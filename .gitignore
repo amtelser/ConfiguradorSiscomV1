@@ -6,3 +6,4 @@ log/*
 *.db
 tests/*
 versiones/*
+salida/*
