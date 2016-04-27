@@ -252,7 +252,7 @@
             <parametro nombre="canales" valor="{{! data['canales'] }}" />
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="10.190.6.60" />
-            <parametro nombre="puertoGeodecodificador" valor="64014" />
+            <parametro nombre="puertoGeodecodificador" valor="64080" />
             <!-- Numero de conexiones a la base de datos Cache -->
             <parametro nombre="numConexionesCache" valor="{{! data['num_conexiones_cache'] }}" />
             <!-- Usar metodos de procesados (default: no) -->
