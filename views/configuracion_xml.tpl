@@ -310,13 +310,13 @@
             <!-- puerto publicador de notificaciones del MMI -->
             <parametro nombre="puertoNotificaciones" valor="{{! str(int(data['puerto_base']) + 26) }}" />
             <!-- Numero de threads para procesar notificaciones (default=10) -->
-            <parametro nombre="numThreadsNotificaciones" valor="25" />
+            <parametro nombre="numThreadsNotificaciones" valor="10" />
             <!-- Habilitar (si, default)/Deshabilitar (no) insertar trayectos en TRAYECTOSUNTECH -->
             <parametro nombre="habilitarTrayectoSuntech" valor="no" />
             <!-- Filtrar notificaciones MobilEye con ceros (si/no (default)) -->
             <parametro nombre="filtrarMobilEye" valor="{{! data['filtrar_mobil_eye'] }}" />
-            <!-- Geo-referenciar notificaciones -->
-            <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar'] }}" />
+            <!-- Geo-referenciar notificaciones (default: si) -->
+            <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_notificaciones'] }}" />
         </parametros>
     </modulo>
 
@@ -361,7 +361,9 @@
             <!-- Tiempo maximo de espera de una notificacion RET antes de sintetizar -->
             <parametro nombre="maxTiempoEsperaRet" valor="10" />
             <!-- Numero de trayectos en cierre activos -->
-            <parametro nombre="int numTrayectosCierreActivos" valor="50" />
+            <parametro nombre="numTrayectosCierreActivos" valor="50" />
+            <!-- Geo-referenciar trayectos (default: si) -->
+            <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_trayectos'] }}" />
         </parametros>
     </modulo>
 
@@ -427,6 +429,8 @@
             <parametro nombre="tiempoCongelamientoFalso" valor="86400" />
             <!-- Habilitar el inicio de seguimiento al detectar un robo -->
             <parametro nombre="iniciarSeguimientoRobo" valor="no" />
+            <!-- Geo-referenciar posiciones (default: si) -->
+            <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_robos'] }}" />
         </parametros>
     </modulo>
 
