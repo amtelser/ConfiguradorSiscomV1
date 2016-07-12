@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : configuracion.xml
+    Author     : RSchiavon
+    Description: Definicion de la configuracion del servidor
+-->
+
+<configuracion>
+    <!--
+        ********************************************************************************
+        Pseudo modulo del servidor
+        (Notese que la clase esta vacia)
+        ********************************************************************************
+    -->
+    <modulo>
+        <nombre>Servidor</nombre>
+        <descripcion>Servidor del sistema</descripcion>
+        <clase></clase>
+        <parametros>
+            <!-- Nombre del servidor -->
+            <parametro nombre="nombreServidor" valor="Op:2 MAQ:0.10 BD:MIA SUNTECH ALTERNATIVO" />
+            <!-- identificador unico del servidor.
+                 Regla:
+                 -  Solo letras, numeros y guines (-)
+                 -  32 caracteres maximo
+            -->
+            <!--                                          0         1        2         3   -->
+            <!--                                          12345678901234567890123456789012 -->
+            <parametro nombre="identificadorUnico" valor="CQRO-SKY-SUN-OP2" />
+            <!-- Directorio de la bitacora del servidor -->
+            <parametro nombre="directorioBitacora" valor="/siscom/instancias/CQRO-SKY-SUN-OP2/log" />
+            <!-- Nivel de bitacora (DEBUG, INFO, WARN, ERROR) -->
+            <parametro nombre="nivelBitacora" valor="WARN" />
+            <parametro nombre="nivelBitacoraConsola" valor="WARN" />
+            <!-- Puerto ZMQ del sincronizador -->
+            <parametro nombre="puertoSincronizador" valor="56000" />
+            <!-- Direccion IP a la red de equipos -->
+            <parametro nombre="direccionIpRedEquipos" valor="10.190.0.10" />
+            <!-- Direccion IP a la red local -->
+            <parametro nombre="direccionIpRedLocal" valor="10.190.0.10" />
+            <!-- Servidor _NO_ autonomo (mantiene una base de datos local minima) -->
+            <parametro nombre="servidorAutonomo" valor="no" />
+            <!-- Generar un progress bar? (si|no) -->
+            <parametro nombre="progressBarActivo" valor="si" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ********************************************************************************
+        Pseudo modulo del supervisor del sistema
+        (Notese que la clase esta vacia)
+        ********************************************************************************
+    -->
+    <modulo>
+        <nombre>Supervisor</nombre>
+        <descripcion>Modulo supervisor del sistema</descripcion>
+        <clase></clase>
+        <parametros></parametros>
+    </modulo>
+
+    <!--
+        ********************************************************************************
+        Pseudo modulo de interfase entre el servidor el exterior
+        (Notese que la clase esta vacia)
+        ********************************************************************************
+    -->
+    <modulo>
+        <nombre>InterfaseExterior</nombre>
+        <descripcion>Interfase entre el servidor el exterior</descripcion>
+        <clase></clase>
+        <parametros>
+            <parametro nombre="puertoVigilante" valor="56001" />
+            <parametro nombre="puertoTxExterno" valor="56002" />
+            <parametro nombre="puertoRxExterno" valor="56003" />
+            <!-- tiempo en milisegundos para el muestreo del vigilante -->
+            <parametro nombre="tiempoMuestreoVigilante" valor="3000" />
+            <!-- longitud del buffer del vigilante -->
+            <parametro nombre="longitudBufferVigilante" valor="512" />
+            <!-- Puerto del publicador de diagnosticos -->
+            <parametro nombre="puertoPubDiagnosticos" valor="56010" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ********************************************************************************
+        Pseudo modulo de reporte de errores por email
+        (Notese que la clase esta vacia)
+        ********************************************************************************
+    -->
+    <modulo>
+        <nombre>ReporteDeErroresPorEmail</nombre>
+        <descripcion>Reporte de errores por email</descripcion>
+        <clase></clase>
+        <parametros>
+            <!-- Envio de email de errores del servidor-->
+            <!-- Servidor de SMTP para enviar emails de errores -->
+            <parametro nombre="servidorSmtp" valor="mail2.encontrack.com" />
+            <parametro nombre="direccionElectronica" valor="suntech@encontrack.com" />
+            <parametro nombre="direccionElectronicaCc" valor="" />
+            <parametro nombre="maxErroresPendientes" valor="20" />
+            <parametro nombre="tiempoEspera" valor="60" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ********************************************************************************
+        Pseudo modulo del manejador de la base de datos
+        (Notese que la clase esta vacia)
+        ********************************************************************************
+    -->
+    <modulo>
+        <nombre>ManejadorBaseDatos</nombre>
+        <descripcion>Manejador de la base de datos</descripcion>
+        <clase></clase>
+        <parametros>
+            <!--
+                URL para la conexion a la base de datos (;IF_EXISTS=TRUE)
+                NOTA: %s se reeplaza con el identificadorUnico (ver modulo Sevidor arriba)
+            -->
+            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/CQRO-SKY-SUN-OP2/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
+            <!-- Numero maximo de conexiones del pool -->
+            <parametro nombre="maxConexiones" valor="30" />
+            <!-- Puerto recepcion INSERT, UPDATE, DELETE -->
+            <parametro nombre="puertoUpdate" valor="56004" />
+            <!-- Puerto recepcion SELECT, CALL -->
+            <parametro nombre="puertoSelect" valor="56005" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo de comunicaciones con los equipos
+        A: ST210-TC-01 ST240-TC-01 ST240-MS1-01 ST215-TC-05 ST215-MS3-05
+        ****************************************
+    -->
+    <modulo>
+        <nombre>ComunicacionEquipos-A</nombre>
+        <descripcion>Modulo de comunicacion con los equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.Suntech.ManejadorComunicacionesSuntech</clase>
+        <parametros>
+            <!-- puerto de recepcion de eventos y alarmas -->
+            <parametro nombre="puertoRxEventosAlarmas" valor="5020" />
+            <!-- numero de threads para recepcion de eventos y alarmas -->
+            <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
+            <!-- clase del manejador de comandos -->
+            <parametro nombre="puertoTxComandos" valor="9000" />
+            <!-- tiempo maximo de espera de la respuesta (en segundos) -->
+            <parametro nombre="maxTiempoEspera" valor="30" />
+            <!-- numero maximo de intentos -->
+            <parametro nombre="maxIntentos" valor="3" />
+            <!-- numero de threads para ejecutar comandos -->
+            <parametro nombre="numThreadsComandos" valor="5" />
+            <!-- umbral de bajo voltaje de bateria en Volts-->
+            <parametro nombre="umbralBajoVoltajeBateria" valor="4.0" />
+            <!-- umbral superior para detener comunicaciones.
+                 Un valor de 0 (cero) elimina la detencion de comunicaciones -->
+            <parametro nombre="umbralSuperiorComunicaciones" valor="200" />
+            <!-- umbral inferior para detener comunicaciones -->
+            <parametro nombre="umbralInferiorComunicaciones" valor="50" />
+            <!-- puerto publicador de sobreflujo -->
+            <parametro nombre="puertoPubSobreFlujo" valor="56051" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo de comunicaciones con los equipos
+        B: ST210-TC-02 ST210-MS-01 ST215-TC-06 ST215-MS3-06 ST215-TC-07 ST215-MS-07 ST240-TC-02 ST240-MS-02
+        ****************************************
+    -->
+    <modulo>
+        <nombre>ComunicacionEquipos-B</nombre>
+        <descripcion>Modulo de comunicacion con los equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.Suntech.ManejadorComunicacionesSuntech</clase>
+        <parametros>
+            <!-- puerto de recepcion de eventos y alarmas -->
+            <parametro nombre="puertoRxEventosAlarmas" valor="5021" />
+            <!-- numero de threads para recepcion de eventos y alarmas -->
+            <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
+            <!-- clase del manejador de comandos -->
+            <parametro nombre="puertoTxComandos" valor="9002" />
+            <!-- tiempo maximo de espera de la respuesta (en segundos) -->
+            <parametro nombre="maxTiempoEspera" valor="30" />
+            <!-- numero maximo de intentos -->
+            <parametro nombre="maxIntentos" valor="3" />
+            <!-- numero de threads para ejecutar comandos -->
+            <parametro nombre="numThreadsComandos" valor="5" />
+            <!-- umbral de bajo voltaje de bateria en Volts-->
+            <parametro nombre="umbralBajoVoltajeBateria" valor="4.0" />
+            <!-- umbral superior para detener comunicaciones.
+                 Un valor de 0 (cero) elimina la detencion de comunicaciones -->
+            <parametro nombre="umbralSuperiorComunicaciones" valor="200" />
+            <!-- umbral inferior para detener comunicaciones -->
+            <parametro nombre="umbralInferiorComunicaciones" valor="50" />
+            <!-- puerto publicador de sobreflujo -->
+            <parametro nombre="puertoPubSobreFlujo" valor="56052" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo de comunicaciones con los equipos
+        C: ST210-TC-03 ST215-TC-08 ST215-MS-08 ST240-TC-03 ST240-MS-03
+        ****************************************
+    -->
+    <modulo>
+        <nombre>ComunicacionEquipos-C</nombre>
+        <descripcion>Modulo de comunicacion con los equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.Suntech.ManejadorComunicacionesSuntech</clase>
+        <parametros>
+            <!-- puerto de recepcion de eventos y alarmas -->
+            <parametro nombre="puertoRxEventosAlarmas" valor="5022" />
+            <!-- numero de threads para recepcion de eventos y alarmas -->
+            <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
+            <!-- clase del manejador de comandos -->
+            <parametro nombre="puertoTxComandos" valor="9003" />
+            <!-- tiempo maximo de espera de la respuesta (en segundos) -->
+            <parametro nombre="maxTiempoEspera" valor="30" />
+            <!-- numero maximo de intentos -->
+            <parametro nombre="maxIntentos" valor="3" />
+            <!-- numero de threads para ejecutar comandos -->
+            <parametro nombre="numThreadsComandos" valor="5" />
+            <!-- umbral de bajo voltaje de bateria en Volts-->
+            <parametro nombre="umbralBajoVoltajeBateria" valor="4.0" />
+            <!-- umbral superior para detener comunicaciones.
+                 Un valor de 0 (cero) elimina la detencion de comunicaciones -->
+            <parametro nombre="umbralSuperiorComunicaciones" valor="200" />
+            <!-- umbral inferior para detener comunicaciones -->
+            <parametro nombre="umbralInferiorComunicaciones" valor="50" />
+            <!-- puerto publicador de sobreflujo -->
+            <parametro nombre="puertoPubSobreFlujo" valor="56053" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo de comunicaciones con los equipos
+        D: ST340-TC-03 ST340-MS-03
+        ****************************************
+    -->
+    <modulo>
+        <nombre>ComunicacionEquipos-D</nombre>
+        <descripcion>Modulo de comunicacion con los equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.Suntech.ManejadorComunicacionesSuntech</clase>
+        <parametros>
+            <!-- puerto de recepcion de eventos y alarmas -->
+            <parametro nombre="puertoRxEventosAlarmas" valor="5026" />
+            <!-- numero de threads para recepcion de eventos y alarmas -->
+            <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
+            <!-- clase del manejador de comandos -->
+            <parametro nombre="puertoTxComandos" valor="9006" />
+            <!-- tiempo maximo de espera de la respuesta (en segundos) -->
+            <parametro nombre="maxTiempoEspera" valor="30" />
+            <!-- numero maximo de intentos -->
+            <parametro nombre="maxIntentos" valor="3" />
+            <!-- numero de threads para ejecutar comandos -->
+            <parametro nombre="numThreadsComandos" valor="5" />
+            <!-- umbral de bajo voltaje de bateria en Volts-->
+            <parametro nombre="umbralBajoVoltajeBateria" valor="4.0" />
+            <!-- umbral superior para detener comunicaciones.
+                 Un valor de 0 (cero) elimina la detencion de comunicaciones -->
+            <parametro nombre="umbralSuperiorComunicaciones" valor="200" />
+            <!-- umbral inferior para detener comunicaciones -->
+            <parametro nombre="umbralInferiorComunicaciones" valor="50" />
+            <!-- puerto publicador de sobreflujo -->
+            <parametro nombre="puertoPubSobreFlujo" valor="56054" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo de comunicaciones con los equipos
+        E: ST215-TC-10 ST215-MS-10 ST240-TC-05 ST240-MS-05
+        ****************************************
+    -->
+    <modulo>
+        <nombre>ComunicacionEquipos-E</nombre>
+        <descripcion>Modulo de comunicacion con los equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.Suntech.ManejadorComunicacionesSuntech</clase>
+        <parametros>
+            <!-- puerto de recepcion de eventos y alarmas -->
+            <parametro nombre="puertoRxEventosAlarmas" valor="5032" />
+            <!-- numero de threads para recepcion de eventos y alarmas -->
+            <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
+            <!-- clase del manejador de comandos -->
+            <parametro nombre="puertoTxComandos" valor="9010" />
+            <!-- tiempo maximo de espera de la respuesta (en segundos) -->
+            <parametro nombre="maxTiempoEspera" valor="30" />
+            <!-- numero maximo de intentos -->
+            <parametro nombre="maxIntentos" valor="3" />
+            <!-- numero de threads para ejecutar comandos -->
+            <parametro nombre="numThreadsComandos" valor="5" />
+            <!-- umbral de bajo voltaje de bateria en Volts-->
+            <parametro nombre="umbralBajoVoltajeBateria" valor="4.0" />
+            <!-- umbral superior para detener comunicaciones.
+                 Un valor de 0 (cero) elimina la detencion de comunicaciones -->
+            <parametro nombre="umbralSuperiorComunicaciones" valor="200" />
+            <!-- umbral inferior para detener comunicaciones -->
+            <parametro nombre="umbralInferiorComunicaciones" valor="50" />
+            <!-- puerto publicador de sobreflujo -->
+            <parametro nombre="puertoPubSobreFlujo" valor="56055" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo de interfase entre el manejador de
+        comunicaciones y el manejador de informacion
+        ****************************************
+    -->
+    <modulo>
+        <nombre>InterfaseComunicacionesInformacion</nombre>
+        <descripcion>Modulo de comunicacion con los equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.servidor.comunicaciones.InterfaseComunicacionesInformacion</clase>
+        <parametros>
+            <!-- direccion de ip del servidor con el manejador de informacion -->
+            <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
+            <!-- puerto de envio de eventos y alarmas -->
+            <parametro nombre="puertoTxEventosAlarmas" valor="56006" />
+            <!-- puerto de recepcion de comandos -->
+            <parametro nombre="puertoRxComandos" valor="56007" />
+            <!-- puerto de envio de resultados de comandos -->
+            <parametro nombre="puertoTxResultadosCmds" valor="56008" />
+            <!-- puerto publicador de paquetes -->
+            <parametro nombre="puertoPubPaquetes" valor="56035" />
+            <!-- puerto publicador de comunicaciones recibidas de equipos -->
+            <parametro nombre="puertoPubComunicaciones" valor="56026" />
+        </parametros>
+    </modulo>
+
+    <!--
+        **********************************************************
+        Modulo de interfase con la base de datos Cache
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>SoporteCache</nombre>
+        <descripcion>Modulo de interfase con la base de datos Cache</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.interfasecache.SoporteCache</clase>
+        <parametros>
+            <parametro nombre="direccionIpCache" valor="cache.encontrack.com" />
+            <parametro nombre="puertoCache" valor="1972" />
+            <parametro nombre="nombreBaseDeDatos" valor="FERGUISAPROD" />
+            <parametro nombre="usuarioBd" valor="rafael" />
+            <parametro nombre="pwdBd" valor="rafaS1110"/>
+            <parametro nombre="tablaBitacoraComs" valor="RXSUNTEC" />
+            <!--
+                Canales de comunicacion
+                =======================
+                Este parametro indica los canales de comunicacion manejador por
+                esta interfase.
+                Cada canal esta entre comillas sencillas y los canales se
+                separan por comas.
+
+                Por ejemplo:
+                    'CANAL-01','CANAL-02','CANAL-03'
+            -->
+            <parametro nombre="canales" valor="'ST210-TC-01','ST240-TC-01','ST240-MS1-01','ST215-TC-05','ST215-MS3-05','ST210-TC-02','ST210-MS-01','ST215-TC-06','ST215-MS3-06','ST215-TC-07','ST215-MS-07','ST240-TC-02','ST240-MS-02','ST210-TC-03','ST215-TC-08','ST215-MS-08','ST240-TC-03','ST240-MS-03','ST340-TC-03','ST340-MS-03','ST215-TC-10','ST215-MS-10','ST240-TC-05','ST240-MS-05'" />
+            <!-- Servicio de geo-referenciador -->
+            <parametro nombre="servidorGeodecodificador" valor="10.190.6.60" />
+            <parametro nombre="puertoGeodecodificador" valor="64080" />
+            <!-- Numero de conexiones a la base de datos Cache -->
+            <parametro nombre="numConexionesCache" valor="22" />
+            <!-- Usar metodos de procesados (default: no) -->
+            <parametro nombre="usarMetodosP" valor="no" />
+        </parametros>
+    </modulo>
+
+    <!--
+        **********************************************************
+        Modulo manejador de equipos
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>ManejadorEquiposCache</nombre>
+        <descripcion>Modulo manejador de equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ManejadorEquiposCache</clase>
+        <parametros>
+            <!-- Periodo de actualizacion de la lista de equipos manejados en segundos -->
+            <parametro nombre="periodoActualizacionListaEquipos" valor="600" />
+            <!-- Direccion IP del MMI para actualizar equipos -->
+            <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
+            <!-- Puerto de comunicacion para actualizar la lista de equipos -->
+            <parametro nombre="puertoActualizacionEquipos" valor="56030" />
+            <!--
+                Tipo de equipo que se maneja. Valores validos son:
+                SUNTECH
+                QUECLINK
+                SKYPATROL
+                CELLOCATOR
+            <parametro nombre="tipoDeEquipo" valor="QUECLINK" />
+            -->
+            <parametro nombre="tipoDeEquipo" valor="SUNTECH" />
+            <!-- puerto publicador de contadores de paquetes -->
+            <parametro nombre="puertoPubContadorPaquetes" valor="56034" />
+        </parametros>
+    </modulo>
+
+    <!--
+        **********************************************************
+        Modulo procesador de notificaciones de equipos
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>ProcesadorNotificacionesCache</nombre>
+        <descripcion>Modulo procesador de eventos y alarmas de equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorNotificacionesCache</clase>
+        <parametros>
+            <!-- direccion de ip del servidor MMI -->
+            <parametro nombre="direccionIpMMI" valor="127.0.0.1" />
+            <!-- puerto publicador de notificaciones del MMI -->
+            <parametro nombre="puertoNotificaciones" valor="56026" />
+            <!-- Numero de threads para procesar notificaciones (default=10) -->
+            <parametro nombre="numThreadsNotificaciones" valor="10" />
+            <!-- Habilitar (si, default)/Deshabilitar (no) insertar trayectos en TRAYECTOSUNTECH -->
+            <parametro nombre="habilitarTrayectoSuntech" valor="no" />
+            <!-- Filtrar notificaciones MobilEye con ceros (si/no (default)) -->
+            <parametro nombre="filtrarMobilEye" valor="no" />
+            <!-- Geo-referenciar notificaciones (default: si) -->
+            <parametro nombre="geoReferenciar" valor="no" />
+        </parametros>
+    </modulo>
+
+    <!--
+        **********************************************************
+        Modulo procesador de comandos a equipos
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>ProcesadorComandosCache</nombre>
+        <descripcion>Modulo procesador de comandos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorComandosCache</clase>
+        <parametros>
+            <!-- Muestreo de la tabla SALIDAGSM deshabillitado -->
+            <parametro nombre="periodoMuestreoSalidaGsm" valor="0" />
+            <!-- Numero de threads para la ejecucion de salidas gsm -->
+            <parametro nombre="numThreadsEjecucionSalidasGsm" valor="1" />
+            <!-- direccion de ip del servidor MMI -->
+            <parametro nombre="direccionIpMMI" valor="127.0.0.1" />
+            <!-- puerto publicador de notificaciones del MMI -->
+            <parametro nombre="puertoVentanilla" valor="56029" />
+            <!-- Tiempo maximo de espera de la ejecucion de comandos en segundos -->
+            <!-- 360 segundos = 6 minutos para compensar hasta 5 comunicaciones -->
+            <parametro nombre="tiempoMaxEjecucionComandos" valor="360" />
+            <!-- Puerto para recibir solicitudes de comandos a Cache -->
+            <parametro nombre="puertoSolicitudComandos" valor="56031" />
+            <!-- Puerto para publicar cambios de estado de comandos de Cache -->
+            <parametro nombre="puertoPubEstadosComandos" valor="56032" />
+        </parametros>
+    </modulo>
+
+    <!--
+        **********************************************************
+        Modulo procesador de trayectos
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>ProcesadorTrayectosCache</nombre>
+        <descripcion>Modulo procesador de trayectos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorTrayectosCache</clase>
+        <parametros>
+            <!-- Tiempo maximo de espera de una notificacion RET antes de sintetizar -->
+            <parametro nombre="maxTiempoEsperaRet" valor="10" />
+            <!-- Numero de trayectos en cierre activos -->
+            <parametro nombre="numTrayectosCierreActivos" valor="50" />
+            <!-- Geo-referenciar trayectos (default: si) -->
+            <parametro nombre="geoReferenciar" valor="no" />
+        </parametros>
+    </modulo>
+
+    <!--
+        **********************************************************
+        Modulo procesador de reservaciones
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>ProcesadorReservaciones</nombre>
+        <descripcion>Modulo procesador de reservaciones</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.manejadorinformacion.ProcesadorReservaciones</clase>
+        <parametros>
+            <parametro nombre="puertoUdpEscucha" valor="56040" />
+        </parametros>
+    </modulo>
+
+    <!--
+        **********************************************************
+        Modulo de interfase con Nagios
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>InterfaseNagios</nombre>
+        <descripcion>Modulo de interfase con Nagios</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.servidor.interfasenagios.InterfaseNagios</clase>
+        <parametros>
+            <!-- Puerto HTTP -->
+            <parametro nombre="puertoHttp" valor="8002" />
+        </parametros>
+    </modulo>
+
+</configuracion>
