@@ -3,7 +3,7 @@ title {{ data['id_instancia'] }}
 
 :lazo
     c:
-    cd c:\siscom\master-20160425-01\
+    cd c:\siscom\{{ data['tag_en_git'] }}\
     java -Djava.library.path=/usr/local/lib ^
          -Xrunjdwp:transport=dt_socket,server=y,address={{ data['puerto_debug'] }},suspend=n ^
          -XX:+UseConcMarkSweepGC -XX:+UseParNewGC ^
@@ -23,4 +23,3 @@ REM         -XX:+PrintGCDetails -XX:+PrintGCDateStamps ^
 REM         -Xloggc:{{ data['id_instancia'] }}-GC.log ^
 REM Generar info del profiler
 REM         -Xrunhprof:heap=sites,file={{ data['id_instancia'] }}.hprof.txt ^
-

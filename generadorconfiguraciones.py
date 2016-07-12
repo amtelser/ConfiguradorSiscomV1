@@ -5,6 +5,12 @@ from __future__ import print_function
 import csv
 import bottle
 import os
+import sys
+
+if len(sys.argv) > 1:
+    tag_en_git = sys.argv[1]
+else:
+    tag_en_git = 'bin'
 
 INFO_INSTANCIAS = 'configuraciones.csv'
 TEMPLATE_CONFIG = 'configuracion_xml'
@@ -25,6 +31,7 @@ try:
             if tup[0] == 'id_instancia':
                 id_instancia = tup[1].lower()
             data[tup[0]] = tup[1]
+        data['tag_en_git'] = tag_en_git
         configuracion = bottle.template(TEMPLATE_CONFIG, data=data)
         arranca_win = bottle.template(TEMPLATE_STUP_WIN, data=data)
         arranca_lin = bottle.template(TEMPLATE_STUP_LIN, data=data)
