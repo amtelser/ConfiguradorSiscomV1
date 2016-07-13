@@ -46,14 +46,16 @@ try:
                 if exc.errno != errno.EEXIST:
                     raise
         # Crea los archivos...
-        with open('{0}configuracion.xml'.format(dir_instancia), 'w') as f_out:
+        #   'wb' indica escribir el archivo con EOL de Unix (Solo funciona con Python 2.x)
+        with open('{0}configuracion.xml'.format(dir_instancia), 'wb') as f_out:
             f_out.write(configuracion)
+        with open('{0}arranca.sh'.format(dir_instancia), 'wb') as f_out:
+            f_out.write(arranca_lin)
+        with open('{0}{1}.ini'.format(dir_instancia, id_instancia), 'wb') as f_out:
+            f_out.write(supervisor_ini)
+        # El arranque en  Windows se escribe en forma normal
         with open('{0}arranca.cmd'.format(dir_instancia), 'w') as f_out:
             f_out.write(arranca_win)
-        with open('{0}arranca.sh'.format(dir_instancia), 'w') as f_out:
-            f_out.write(arranca_lin)
-        with open('{0}{1}.ini'.format(dir_instancia, id_instancia), 'w') as f_out:
-            f_out.write(supervisor_ini)
 finally:
     f.close()
 

@@ -96,11 +96,14 @@
             <!-- Envio de email de errores del servidor-->
             <!-- Servidor de SMTP para enviar emails de errores -->
             <parametro nombre="servidorSmtp" valor="mail2.encontrack.com" />
-%if data['tipo_equipos'] == 'SUNTECH':
+% if data['tipo_equipos'] == 'SUNTECH':
             <parametro nombre="direccionElectronica" valor="suntech@encontrack.com" />
 % end
-%if data['tipo_equipos'] == 'QUECLINK':
+% if data['tipo_equipos'] == 'QUECLINK':
             <parametro nombre="direccionElectronica" valor="queclink@encontrack.com" />
+% end
+% if data['tipo_equipos'] == 'MIX2000':
+            <parametro nombre="direccionElectronica" valor="mix2000@encontrack.com" />
 % end
             <parametro nombre="direccionElectronicaCc" valor="" />
             <parametro nombre="maxErroresPendientes" valor="20" />
@@ -138,7 +141,7 @@
         Modulo de comunicaciones con los equipos
         ****************************************
     -->
-%if data['tipo_equipos'] == 'SUNTECH':
+% if data['tipo_equipos'] == 'SUNTECH':
     <modulo>
         <nombre>ComunicacionEquipos</nombre>
         <descripcion>Modulo de comunicacion con los equipos</descripcion>
@@ -167,8 +170,8 @@
             <parametro nombre="puertoPubSobreFlujo" valor="{{! str(int(data['puerto_base']) + 33) }}" />
         </parametros>
     </modulo>
-%end
-%if data['tipo_equipos'] == 'QUECLINK':
+% end
+% if data['tipo_equipos'] == 'QUECLINK':
     <modulo>
         <nombre>ComunicacionEquipos</nombre>
         <descripcion>Modulo de comunicacion con los equipos</descripcion>
@@ -194,7 +197,45 @@
             <parametro nombre="puertoPubPaquetes" valor="{{! str(int(data['puerto_base']) + 35) }}" />
         </parametros>
     </modulo>
-%end
+% end
+% if data['tipo_equipos'] == 'MIX2000':
+    <modulo>
+        <nombre>ComunicacionEquipos</nombre>
+        <descripcion>Modulo de comunicacion con los equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.mix.ManejadorComunicacionesMix</clase>
+        <parametros>
+            <!-- clase del manejador de los equipos -->
+            <!--<parametro nombre="manejadorEventosAlarmasEquipos" valor="com.encontrack.sistemacomunicaciones.servidor.equipos.mix.ManejadorEventosAlarmasMix" />-->
+            <!-- puerto de recepcion de eventos y alarmas -->
+            <parametro nombre="puertoRxEventosAlarmas" valor="5626" />
+            <!-- numero de threads para recepcion de eventos y alarmas -->
+            <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
+            <!-- clase del manejador de comandos -->
+            <!--<parametro nombre="manejadorComandosEquipos" valor="com.encontrack.sistemacomunicaciones.servidor.equipos.mix.ManejadorComandosMix" />-->
+            <!-- numero de puerta al que se envian los comandos a los equipos -->
+            <parametro nombre="puertoTxComandos" valor="9002" />
+            <!-- tiempo maximo de espera de la respuesta (en segundos) -->
+            <parametro nombre="maxTiempoEspera" valor="30" />
+            <!-- numero maximo de intentos -->
+            <parametro nombre="maxIntentos" valor="3" />
+            <!-- numero de threads para ejecutar comandos -->
+            <parametro nombre="numThreadsComandos" valor="30" />
+            <!-- umbral de bajo voltaje de bateria en Volts-->
+            <parametro nombre="umbralBajoVoltajeBateria" valor="4.0" />
+            <!-- umbral superior para detener comunicaciones -->
+            <parametro nombre="umbralSuperiorComunicaciones" valor="200" />
+            <!-- umbral inferior para detener comunicaciones -->
+            <parametro nombre="umbralInferiorComunicaciones" valor="50" />
+            <!-- puerto publicador de sobreflujo -->
+            <parametro nombre="puertoPubSobreFlujo" valor="{{! str(int(data['puerto_base']) + 33) }}" />
+            <parametro nombre="activeMqUrl" valor="failover:tcp://10.190.6.87:61616" />
+            <!--<parametro nombre="activeMqUrl" valor="tcp://10.190.3.139:61616" />-->
+            <parametro nombre="nombreTopico" valor="Comms" />
+            <!--<parametro nombre="nombreTopico" valor="prueba" />-->
+            <parametro nombre="urlHostComandos" valor="http://10.190.6.83" />
+        </parametros>
+    </modulo>
+% end
 
     <!--
         ****************************************
@@ -289,6 +330,9 @@
 % end
 % if data['tipo_equipos'] == 'QUECLINK':
             <parametro nombre="tipoDeEquipo" valor="QUECLINK" />
+% end
+% if data['tipo_equipos'] == 'MIX2000':
+            <parametro nombre="tipoDeEquipo" valor="MIX2000" />
 % end
             <!-- puerto publicador de contadores de paquetes -->
             <parametro nombre="puertoPubContadorPaquetes" valor="{{! str(int(data['puerto_base']) + 34) }}" />
