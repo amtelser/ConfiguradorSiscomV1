@@ -2,7 +2,6 @@ log
 log/*
 *.log
 *.pyc
-*.xlsx
 *.db
 tests/*
 versiones/*
