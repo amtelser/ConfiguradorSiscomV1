@@ -3,7 +3,7 @@ title CMIA-SKY-SUN-OP28
 
 :lazo
     c:
-    cd c:\siscom\master-20160706-01\
+    cd c:\siscom\bin\
     java -Djava.library.path=/usr/local/lib ^
          -Xrunjdwp:transport=dt_socket,server=y,address=8828,suspend=n ^
          -XX:+UseConcMarkSweepGC -XX:+UseParNewGC ^
