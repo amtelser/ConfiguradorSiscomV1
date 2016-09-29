@@ -3,7 +3,7 @@ title CMIA-GV300-OP2
 
 :lazo
     c:
-    cd c:\siscom\bin\
+    cd c:\siscom\master-xxx\
     java -Djava.library.path=/usr/local/lib ^
          -Xrunjdwp:transport=dt_socket,server=y,address=8902,suspend=n ^
          -XX:+UseConcMarkSweepGC -XX:+UseParNewGC ^
