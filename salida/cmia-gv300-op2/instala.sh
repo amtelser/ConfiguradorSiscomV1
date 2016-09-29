@@ -16,7 +16,7 @@ cp arranca.sh        /siscom/instancias/CMIA-GV300-OP2/arranca.sh
 chown -R siscom:siscom /siscom/instancias/CMIA-GV300-OP2
 
 # Mueve el archivo de supervisord al directorio
-cp *.ini /etc/supervisor.d
+cp *.ini /etc/supervisord.d
 
 exit 0
 
