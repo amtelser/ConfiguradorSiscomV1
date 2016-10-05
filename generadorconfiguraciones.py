@@ -15,7 +15,7 @@ else:
 INFO_INSTANCIAS = 'configuraciones.csv'
 TEMPLATE_CONFIG = 'configuracion_xml'
 TEMPLATE_STUP_LIN = 'arranca_sh'
-TEMPLATE_STUP_WIN = 'arranca_cmd'
+#-DEPRECADO-#TEMPLATE_STUP_WIN = 'arranca_cmd'
 TEMPLATE_SUPERVISOR = 'supervisor_ini'
 TEMPLATE_INSTALA = 'instala_sh'
 DIR_SALIDA = 'salida'
@@ -35,7 +35,7 @@ try:
         data['id_instancia_lower'] = id_instancia
         data['tag_en_git'] = tag_en_git
         configuracion = bottle.template(TEMPLATE_CONFIG, data=data)
-        arranca_win = bottle.template(TEMPLATE_STUP_WIN, data=data)
+#-DEPRECADO-#        arranca_win = bottle.template(TEMPLATE_STUP_WIN, data=data)
         arranca_lin = bottle.template(TEMPLATE_STUP_LIN, data=data)
         supervisor_ini = bottle.template(TEMPLATE_SUPERVISOR, data=data)
         instala_lin = bottle.template(TEMPLATE_INSTALA, data=data)
@@ -58,9 +58,9 @@ try:
             f_out.write(supervisor_ini)
         with open('{0}instala.sh'.format(dir_instancia), 'wb') as f_out:
             f_out.write(instala_lin)
-        # El arranque en  Windows se escribe en forma normal
-        with open('{0}arranca.cmd'.format(dir_instancia), 'w') as f_out:
-            f_out.write(arranca_win)
+#-DEPRECADO-#        # El arranque en  Windows se escribe en forma normal
+#-DEPRECADO-#        with open('{0}arranca.cmd'.format(dir_instancia), 'w') as f_out:
+#-DEPRECADO-#            f_out.write(arranca_win)
 finally:
     f.close()
 

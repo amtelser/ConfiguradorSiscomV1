@@ -2,8 +2,10 @@
 
 # Script para instalar la instancia CMIA-SKY-SUN-OP22
 
-# Crea el directorio de la instancia
+# Crea los directorios de la instancia
 mkdir -p /siscom/instancias/CMIA-SKY-SUN-OP22/
+mkdir -p /siscom/instancias/CMIA-SKY-SUN-OP22/log/
+mkdir -p /siscom/instancias/CMIA-SKY-SUN-OP22/db/
 
 # Hacer que arranca.sh sea ejecutable
 chmod +x arranca.sh

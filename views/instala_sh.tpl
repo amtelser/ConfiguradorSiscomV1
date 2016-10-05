@@ -2,8 +2,10 @@
 
 # Script para instalar la instancia {{! data['id_instancia'] }}
 
-# Crea el directorio de la instancia
+# Crea los directorios de la instancia
 mkdir -p {{ data['ROOT'] }}/instancias/{{ data['id_instancia'] }}/
+mkdir -p {{ data['ROOT'] }}/instancias/{{ data['id_instancia'] }}/log/
+mkdir -p {{ data['ROOT'] }}/instancias/{{ data['id_instancia'] }}/db/
 
 # Hacer que arranca.sh sea ejecutable
 chmod +x arranca.sh

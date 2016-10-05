@@ -2,8 +2,10 @@
 
 # Script para instalar la instancia CMIA-SKY-SUN-OP14
 
-# Crea el directorio de la instancia
+# Crea los directorios de la instancia
 mkdir -p /siscom/instancias/CMIA-SKY-SUN-OP14/
+mkdir -p /siscom/instancias/CMIA-SKY-SUN-OP14/log/
+mkdir -p /siscom/instancias/CMIA-SKY-SUN-OP14/db/
 
 # Hacer que arranca.sh sea ejecutable
 chmod +x arranca.sh

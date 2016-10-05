@@ -2,8 +2,10 @@
 
 # Script para instalar la instancia CMIA-GV300-OP2
 
-# Crea el directorio de la instancia
+# Crea los directorios de la instancia
 mkdir -p /siscom/instancias/CMIA-GV300-OP2/
+mkdir -p /siscom/instancias/CMIA-GV300-OP2/log/
+mkdir -p /siscom/instancias/CMIA-GV300-OP2/db/
 
 # Hacer que arranca.sh sea ejecutable
 chmod +x arranca.sh

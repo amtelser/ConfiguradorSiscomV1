@@ -34,7 +34,7 @@
             <parametro nombre="nivelBitacora" valor="WARN" />
             <parametro nombre="nivelBitacoraConsola" valor="WARN" />
             <!-- Puerto ZMQ del sincronizador -->
-            <parametro nombre="puertoSincronizador" valor="55000" />
+            <parametro nombre="puertoSincronizador" valor="56200" />
             <!-- Direccion IP a la red de equipos -->
             <parametro nombre="direccionIpRedEquipos" valor="10.190.6.165" />
             <!-- Direccion IP a la red local -->
@@ -70,15 +70,15 @@
         <descripcion>Interfase entre el servidor el exterior</descripcion>
         <clase></clase>
         <parametros>
-            <parametro nombre="puertoVigilante" valor="55001" />
-            <parametro nombre="puertoTxExterno" valor="55002" />
-            <parametro nombre="puertoRxExterno" valor="55003" />
+            <parametro nombre="puertoVigilante" valor="56201" />
+            <parametro nombre="puertoTxExterno" valor="56202" />
+            <parametro nombre="puertoRxExterno" valor="56203" />
             <!-- tiempo en milisegundos para el muestreo del vigilante -->
             <parametro nombre="tiempoMuestreoVigilante" valor="3000" />
             <!-- longitud del buffer del vigilante -->
             <parametro nombre="longitudBufferVigilante" valor="512" />
             <!-- Puerto del publicador de diagnosticos -->
-            <parametro nombre="puertoPubDiagnosticos" valor="55010" />
+            <parametro nombre="puertoPubDiagnosticos" valor="56210" />
         </parametros>
     </modulo>
 
@@ -122,9 +122,9 @@
             <!-- Numero maximo de conexiones del pool -->
             <parametro nombre="maxConexiones" valor="30" />
             <!-- Puerto recepcion INSERT, UPDATE, DELETE -->
-            <parametro nombre="puertoUpdate" valor="55004" />
+            <parametro nombre="puertoUpdate" valor="56204" />
             <!-- Puerto recepcion SELECT, CALL -->
-            <parametro nombre="puertoSelect" valor="55005" />
+            <parametro nombre="puertoSelect" valor="56205" />
         </parametros>
     </modulo>
 
@@ -158,7 +158,7 @@
             <!-- umbral inferior para detener comunicaciones -->
             <parametro nombre="umbralInferiorComunicaciones" valor="50" />
             <!-- puerto publicador de sobreflujo -->
-            <parametro nombre="puertoPubSobreFlujo" valor="55033" />
+            <parametro nombre="puertoPubSobreFlujo" valor="56233" />
         </parametros>
     </modulo>
 
@@ -176,15 +176,15 @@
             <!-- direccion de ip del servidor con el manejador de informacion -->
             <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
             <!-- puerto de envio de eventos y alarmas -->
-            <parametro nombre="puertoTxEventosAlarmas" valor="55006" />
+            <parametro nombre="puertoTxEventosAlarmas" valor="56206" />
             <!-- puerto de recepcion de comandos -->
-            <parametro nombre="puertoRxComandos" valor="55007" />
+            <parametro nombre="puertoRxComandos" valor="56207" />
             <!-- puerto de envio de resultados de comandos -->
-            <parametro nombre="puertoTxResultadosCmds" valor="55008" />
+            <parametro nombre="puertoTxResultadosCmds" valor="56208" />
             <!-- puerto publicador de paquetes -->
-            <parametro nombre="puertoPubPaquetes" valor="55035" />
+            <parametro nombre="puertoPubPaquetes" valor="56235" />
             <!-- puerto publicador de comunicaciones recibidas de equipos -->
-            <parametro nombre="puertoPubComunicaciones" valor="55026" />
+            <parametro nombre="puertoPubComunicaciones" valor="56226" />
         </parametros>
     </modulo>
 
@@ -241,7 +241,7 @@
             <!-- Direccion IP del MMI para actualizar equipos -->
             <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
             <!-- Puerto de comunicacion para actualizar la lista de equipos -->
-            <parametro nombre="puertoActualizacionEquipos" valor="55030" />
+            <parametro nombre="puertoActualizacionEquipos" valor="56230" />
             <!--
                 Tipo de equipo que se maneja. Valores validos son:
                 SUNTECH
@@ -252,7 +252,7 @@
             -->
             <parametro nombre="tipoDeEquipo" valor="SUNTECH" />
             <!-- puerto publicador de contadores de paquetes -->
-            <parametro nombre="puertoPubContadorPaquetes" valor="55034" />
+            <parametro nombre="puertoPubContadorPaquetes" valor="56234" />
         </parametros>
     </modulo>
 
@@ -269,7 +269,7 @@
             <!-- direccion de ip del servidor MMI -->
             <parametro nombre="direccionIpMMI" valor="127.0.0.1" />
             <!-- puerto publicador de notificaciones del MMI -->
-            <parametro nombre="puertoNotificaciones" valor="55026" />
+            <parametro nombre="puertoNotificaciones" valor="56226" />
             <!-- Numero de threads para procesar notificaciones (default=10) -->
             <parametro nombre="numThreadsNotificaciones" valor="10" />
             <!-- Habilitar (si, default)/Deshabilitar (no) insertar trayectos en TRAYECTOSUNTECH -->
@@ -298,14 +298,14 @@
             <!-- direccion de ip del servidor MMI -->
             <parametro nombre="direccionIpMMI" valor="127.0.0.1" />
             <!-- puerto publicador de notificaciones del MMI -->
-            <parametro nombre="puertoVentanilla" valor="55029" />
+            <parametro nombre="puertoVentanilla" valor="56229" />
             <!-- Tiempo maximo de espera de la ejecucion de comandos en segundos -->
             <!-- 360 segundos = 6 minutos para compensar hasta 5 comunicaciones -->
             <parametro nombre="tiempoMaxEjecucionComandos" valor="360" />
             <!-- Puerto para recibir solicitudes de comandos a Cache -->
-            <parametro nombre="puertoSolicitudComandos" valor="55031" />
+            <parametro nombre="puertoSolicitudComandos" valor="56231" />
             <!-- Puerto para publicar cambios de estado de comandos de Cache -->
-            <parametro nombre="puertoPubEstadosComandos" valor="55032" />
+            <parametro nombre="puertoPubEstadosComandos" valor="56232" />
         </parametros>
     </modulo>
 
@@ -339,9 +339,9 @@
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorComandosOTA</clase>
         <parametros>
             <!-- Puerto de recepcion de solicitudes de comandos -->
-            <parametro nombre="puertoSolicitudes" valor="55037" />
+            <parametro nombre="puertoSolicitudes" valor="56237" />
             <!-- Puerto de publicacion de resultados de comandos -->
-            <parametro nombre="puertoPubResultados" valor="55038" />
+            <parametro nombre="puertoPubResultados" valor="56238" />
             <!-- Numero de threads a usar para ejecutar comandos -->
             <parametro nombre="numThreadsEjecucionComandos" valor="8" />
         </parametros>
@@ -405,7 +405,7 @@
         <descripcion>Modulo procesador de reservaciones</descripcion>
         <clase>com.encontrack.sistemacomunicaciones.manejadorinformacion.ProcesadorReservaciones</clase>
         <parametros>
-            <parametro nombre="puertoUdpEscucha" valor="55040" />
+            <parametro nombre="puertoUdpEscucha" valor="56240" />
         </parametros>
     </modulo>
 
