@@ -42,7 +42,7 @@
             <!-- Servidor _NO_ autonomo (mantiene una base de datos local minima) -->
             <parametro nombre="servidorAutonomo" valor="no" />
             <!-- Generar un progress bar? (si|no) -->
-            <parametro nombre="progressBarActivo" valor="si" />
+            <parametro nombre="progressBarActivo" valor="no" />
         </parametros>
     </modulo>
 
