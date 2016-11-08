@@ -213,9 +213,15 @@
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
             <parametro nombre="canales" valor="'GV300-TC-01','GV300-MS3-01','GV300-MS3-02','GV300-TC-02'" />
+
             <!-- Servicio de geo-referenciador -->
-            <parametro nombre="servidorGeodecodificador" valor="10.190.6.60" />
-            <parametro nombre="puertoGeodecodificador" valor="64080" />
+            <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
+            <parametro nombre="puertoGeodecodificador" valor="55041" />
+            <!-- formato del geo-decodificador, pueder ser json o tsv -->
+            <parametro nombre="formatoGeoDecodificaor" valor="tsv" />
+            <!-- comando del geo-referenciador -->
+            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 55041" />
+
             <!-- Numero de conexiones a la base de datos Cache -->
             <parametro nombre="numConexionesCache" valor="3" />
             <!-- Usar metodos de procesados (default: no) -->

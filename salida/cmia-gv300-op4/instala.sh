@@ -1,6 +1,13 @@
 #!/bin/sh
 
-# Script para instalar la instancia CMIA-GV300-OP4
+echo ""
+echo "Script para instalar la instancia CMIA-GV300-OP4"
+echo ""
+
+if [ "$UID" != "0" ] ; then
+    echo "Este script debe ser ejecutado por root"
+    echo ""
+fi
 
 # Crea los directorios de la instancia
 mkdir -p /siscom/instancias/CMIA-GV300-OP4/
@@ -18,7 +25,10 @@ cp arranca.sh        /siscom/instancias/CMIA-GV300-OP4/arranca.sh
 chown -R siscom:siscom /siscom/instancias/CMIA-GV300-OP4
 
 # Mueve el archivo de supervisord al directorio
-cp *.ini /etc/supervisord.d
+cp cmia-gv300-op4.ini /etc/supervisord.d
+
+echo "Terminamos!"
+echo ""
 
 exit 0
 

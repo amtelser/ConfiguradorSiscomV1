@@ -25,7 +25,7 @@ cp arranca.sh        {{ data['ROOT'] }}/instancias/{{ data['id_instancia'] }}/ar
 chown -R siscom:siscom {{ data['ROOT'] }}/instancias/{{ data['id_instancia'] }}
 
 # Mueve el archivo de supervisord al directorio
-cp *.ini /etc/supervisord.d
+cp {{ data['id_instancia_lower'] }}.ini /etc/supervisord.d
 
 echo "Terminamos!"
 echo ""

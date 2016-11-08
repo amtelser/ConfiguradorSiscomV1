@@ -291,9 +291,15 @@
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
             <parametro nombre="canales" valor="{{! data['canales'] }}" />
+
             <!-- Servicio de geo-referenciador -->
-            <parametro nombre="servidorGeodecodificador" valor="10.190.6.60" />
-            <parametro nombre="puertoGeodecodificador" valor="64080" />
+            <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
+            <parametro nombre="puertoGeodecodificador" valor="{{! str(int(data['puerto_base']) + 41) }}" />
+            <!-- formato del geo-decodificador, pueder ser json o tsv -->
+            <parametro nombre="formatoGeoDecodificaor" valor="tsv" />
+            <!-- comando del geo-referenciador -->
+            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh {{! str(int(data['puerto_base']) + 41) }}" />
+
             <!-- Numero de conexiones a la base de datos Cache -->
             <parametro nombre="numConexionesCache" valor="{{! data['num_conexiones_cache'] }}" />
             <!-- Usar metodos de procesados (default: no) -->
