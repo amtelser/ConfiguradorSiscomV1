@@ -7,6 +7,7 @@ echo ""
 if [ "$UID" != "0" ] ; then
     echo "Este script debe ser ejecutado por root"
     echo ""
+    exit -1
 fi
 
 # Crea los directorios de la instancia
