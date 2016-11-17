@@ -272,10 +272,6 @@
         <descripcion>Modulo procesador de eventos y alarmas de equipos</descripcion>
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorNotificacionesCache</clase>
         <parametros>
-            <!-- direccion de ip del servidor MMI -->
-            <parametro nombre="direccionIpMMI" valor="127.0.0.1" />
-            <!-- puerto publicador de notificaciones del MMI -->
-            <parametro nombre="puertoNotificaciones" valor="56226" />
             <!-- Numero de threads para procesar notificaciones (default=10) -->
             <parametro nombre="numThreadsNotificaciones" valor="10" />
             <!-- Habilitar (si, default)/Deshabilitar (no) insertar trayectos en TRAYECTOSUNTECH -->
@@ -284,6 +280,9 @@
             <parametro nombre="filtrarMobilEye" valor="no" />
             <!-- Geo-referenciar notificaciones (default: si) -->
             <parametro nombre="geoReferenciar" valor="no" />
+
+            <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
+            <parametro nombre="filtrarDuplicados" valor="no" />
         </parametros>
     </modulo>
 
@@ -428,6 +427,98 @@
             <!-- Puerto HTTP -->
             <parametro nombre="puertoHttp" valor="8016" />
         </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo de interfase entre el manejador de
+        comunicaciones y el manejador de informacion que filtra duplicados
+        ****************************************
+    -->
+    <modulo>
+        <nombre>InterfaseComunicacionesFiltraDuplicados</nombre>
+        <descripcion>Modulo de comunicacion con los equipos y kafka</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.interfasecache.InterfaseComunicacionesFiltraDuplicados</clase>
+        <parametros>
+	    <parametro nombre="nombreModuloInterfaseComsInfo" valor="InterfaseComunicacionesInformacion" />
+	    <parametro nombre="nombreModuloManejadorEquipos" valor="ManejadorEquiposCache" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo de soporte con la informacion de acceso a Kafka
+        ****************************************
+    -->
+    <modulo>
+        <nombre>SoporteKafka</nombre>
+        <descripcion>Modulo de soporte con la informacion de acceso a Kafka</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.SoporteKafka</clase>
+        <parametros>
+            <!-- la ip y host de el/los servidor(es) de Kafka -->
+            <parametro nombre="servidoresKafka" valor="10.190.5.172:9092,10.190.5.173:9092" />
+            <!-- el tamanio del buffer de Kafka (al menos el tamanio mayor en bytes de los mensajes) -->
+            <parametro nombre="tamanioBytesBufferKafka" valor="3000" />
+            <!-- el nombre del topico al que se publican las comunicaciones -->
+            <parametro nombre="topico" valor="eventos-siscom" />
+            <!-- el nombre del el/los servidor(es) Zookeeper para realizar las configuraciones -->
+            <parametro nombre="servidoresZookeeper" valor="10.190.5.174:2181" />
+            <!-- el numero de particiones del topico (se aconseja que sea igual o mayor al numero max de conexiones a cache por IP/usuario) -->
+            <parametro nombre="numeroParticiones" valor="24" />
+            <!-- el numero de replicas del topico -->
+            <parametro nombre="numeroReplicas" valor="1" />
+            <!-- numero maximo de intentos de publicacion del mensaje -->
+            <parametro nombre="maxIntentosEnvio" valor="3" />
+            <!-- numero de milisegundos que Kafka va a esperar por la confirmacion del mensaje -->
+            <parametro nombre="msTimeoutRespuestaPeticion" valor="100000" />
+        </parametros>
+    </modulo>
+
+    <!--
+        ****************************************
+        Modulo publicador de comunicaciones
+        ****************************************
+    -->
+    <modulo>
+        <nombre>ModuloNotificadorExternoComunicaciones</nombre>
+        <descripcion>Modulo de Notificacion a Kafka</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.ManejadorNotificadorExternoComunicaciones</clase>
+        <parametros>
+	    <!-- indica si se han de filtrar las notificaciones MobilEye -->
+            <parametro nombre="filtrarMobilEye" valor="no" />
+            <!-- Habilitar (si, default)/Deshabilitar (no) insertar trayectos en TRAYECTOSUNTECH -->
+            <parametro nombre="habilitarTrayectoSuntech" valor="no" />
+            <!-- el numero de threads que procesan notificaciones simultaneamente -->
+            <parametro nombre="numThreadsNotificaciones" valor="24" />
+            <!-- indica si se han de georeferenciar las comunicaciones antes de publicarlas -->
+            <parametro nombre="geoReferenciar" valor="no" />
+            <!-- habilita la funcionalidad de respaldar mensajes que no se pudieron enviar a Kafka -->
+            <parametro nombre="habilitarRespaldo" valor="no" />
+            <!-- habilita la funcionalidad de procesar la respuesta de comandos -->
+            <parametro nombre="procesarRespuestaComando" valor="no" />
+
+            <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
+            <parametro nombre="filtrarDuplicados" valor="no" />
+        </parametros>
+    </modulo>
+
+    <!--
+        **********************************************************
+        Modulo publicador de trayectos
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>PublicadorTrayectosKafka</nombre>
+        <descripcion>Modulo publicador de trayectos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.ProcesadorTrayectosPublicador</clase>
+        <parametros>
+            <!-- Tiempo maximo de espera de una notificacion RET antes de sintetizar -->
+            <parametro nombre="maxTiempoEsperaRet" valor="10" />
+            <!-- Numero de trayectos en cierre activos -->
+            <parametro nombre="numTrayectosCierreActivos" valor="50" />
+            <!-- Geo-referenciar trayectos (default: si) -->
+            <parametro nombre="geoReferenciar" valor="no" />
+            </parametros>
     </modulo>
 
 </configuracion>
