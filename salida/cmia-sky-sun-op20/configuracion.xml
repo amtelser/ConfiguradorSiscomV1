@@ -456,13 +456,13 @@
         <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.SoporteKafka</clase>
         <parametros>
             <!-- la ip y host de el/los servidor(es) de Kafka -->
-            <parametro nombre="servidoresKafka" valor="10.190.5.172:9092,10.190.5.173:9092" />
+            <parametro nombre="servidoresKafka" valor="10.190.6.172:9092,10.190.6.173:9092" />
             <!-- el tamanio del buffer de Kafka (al menos el tamanio mayor en bytes de los mensajes) -->
             <parametro nombre="tamanioBytesBufferKafka" valor="3000" />
             <!-- el nombre del topico al que se publican las comunicaciones -->
             <parametro nombre="topico" valor="eventos-siscom" />
             <!-- el nombre del el/los servidor(es) Zookeeper para realizar las configuraciones -->
-            <parametro nombre="servidoresZookeeper" valor="10.190.5.174:2181" />
+            <parametro nombre="servidoresZookeeper" valor="10.190.6.174:2181" />
             <!-- el numero de particiones del topico (se aconseja que sea igual o mayor al numero max de conexiones a cache por IP/usuario) -->
             <parametro nombre="numeroParticiones" valor="24" />
             <!-- el numero de replicas del topico -->
