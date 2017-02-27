@@ -22,10 +22,65 @@ TEMPLATE_SUPERVISOR = 'supervisor_ini'
 TEMPLATE_INSTALA = 'instala_sh'
 DIR_SALIDA = 'salida'
 
+reglas = [
+    {'nombre': 'id_instancia', 'campos': ['id_instancia']},
+    {'nombre': 'nombre_corto', 'campos': ['nombre_corto']},
+    {'nombre': 'puerto_base_drp', 'campos': ['puerto_base_drp']},
+    {'nombre': 'puerto_base', 'campos': ['ip_red_admin', 'puerto_base']},
+    {'nombre': 'puerto_rx_notificaciones', 'campos': ['ip_red_equipos', 'puerto_rx_notificaciones']},
+    {'nombre': 'puerto_tx_comandos', 'campos': ['ip_red_equipos', 'puerto_tx_comandos']},
+    {'nombre': 'puerto_nagios', 'campos': ['ip_red_admin', 'puerto_nagios']},
+    {'nombre': 'puerto_ejercitador', 'campos': ['puerto_ejercitador']},
+    {'nombre': 'puerto_nagios', 'campos': ['puerto_nagios']},
+    # Casos especiales
+    {'nombre': 'canales', 'campo': 'canales', 'separador': ','},
+]
+
+def valida_campos(campos):
+    '''Valida los campos en el archivo contra las reglas'''
+    for regla in reglas:
+        regla['lista'] = []
+        regla['valida'] = True
+        if 'separador' in regla:
+            if not regla['campo'] in campos:
+                print('La regla [{0}] contiene el campo invalido [{1}]'.format(regla['nombre'], campo))
+                regla['valida'] = False
+        else:
+            for campo in regla['campos']:
+                if not campo in campos:
+                    print('La regla [{0}] contiene el campo invalido [{1}]'.format(regla['nombre'], campo))
+                    regla['valida'] = False
+    return
+
+def valida_instancia(instancia):
+    '''Valida la informacion de una instancia'''
+    for regla in reglas:
+        if not regla['valida']:
+            continue
+        # solo reglas validas
+        if 'separador' in regla:
+            campos = instancia[regla['campo']].split(regla['separador'])
+            for campo in campos:
+                if campo in regla['lista']:
+                    print('Campo dupicado [{0}] en regla [{1}] @ [{2}]'.
+                          format(campo, regla['nombre'], instancia['id_instancia']))
+                regla['lista'].append(campo)
+        else:
+            campos = []
+            for campo in regla['campos']:
+                campos.append(instancia[campo])
+            campo = ':'.join(campos)
+            if campo in regla['lista']:
+                print('Campo dupicado [{0}] en regla [{1}] @ [{2}]'.
+                      format(campo, regla['nombre'], instancia['id_instancia']))
+            regla['lista'].append(campo)
+    return
+
 f = open(INFO_INSTANCIAS)
 try:
     f_csv = csv.reader(f)
     campos = next(f_csv)
+    valida_campos(campos)
     for info in f_csv:
         datos = zip(campos, info)
         data = {}
@@ -36,6 +91,8 @@ try:
             data[tup[0]] = tup[1]
         data['id_instancia_lower'] = id_instancia
         data['tag_en_git'] = tag_en_git
+        valida_instancia(data)
+
         configuracion = bottle.template(TEMPLATE_CONFIG, data=data)
 #-DEPRECADO-#        arranca_win = bottle.template(TEMPLATE_STUP_WIN, data=data)
         arranca_lin = bottle.template(TEMPLATE_STUP_LIN, data=data)
@@ -83,5 +140,5 @@ try:
 finally:
     f.close()
 
-print('Terminamos')
+print('\nTerminamos')
 #EOF

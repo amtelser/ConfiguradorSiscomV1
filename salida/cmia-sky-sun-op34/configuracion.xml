@@ -215,7 +215,7 @@
                 Por ejemplo:
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
-            <parametro nombre="canales" valor="'ST215-TC-15','ST215-MS-15','ST240-TC-10','ST240-MS-10','ST340-TC-09','ST340-MS-08'" />
+            <parametro nombre="canales" valor="'ST215-TC-15','ST215-MS-15','ST240-TC-10','ST240-MS-10','ST340-TC-09','ST340-MS-09'" />
 
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
