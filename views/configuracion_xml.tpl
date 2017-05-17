@@ -273,7 +273,11 @@
         <descripcion>Modulo de interfase con la base de datos Cache</descripcion>
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.SoporteCache</clase>
         <parametros>
+% if ('tipo_instancia' in data) and (data['tipo_instancia'] == 'prod'):
             <parametro nombre="direccionIpCache" valor="cache.encontrack.com" />
+% else:
+            <parametro nombre="direccionIpCache" valor="10.190.6.49" />
+% end
             <parametro nombre="puertoCache" valor="1972" />
             <parametro nombre="nombreBaseDeDatos" valor="FERGUISAPROD" />
             <parametro nombre="usuarioBd" valor="rafael" />

@@ -19,7 +19,7 @@
         <clase></clase>
         <parametros>
             <!-- Nombre del servidor -->
-            <parametro nombre="nombreServidor" valor="Op:16 MAQ:2A BD:MIA SUNTECH; CANALES: ST215-TC-09 ST215-MS-01 ST240-TC-04 ST240-MS-04 ST340-TC-02 ST340-MS-02" />
+            <parametro nombre="nombreServidor" valor="Op:16 MAQ:2A BD:MIA SUNTECH CANALES: ST215-TC-09 ST215-MS-01 ST240-TC-04 ST240-MS-04 ST340-TC-02 ST340-MS-02" />
             <!-- identificador unico del servidor.
                  Regla:
                  -  Solo letras, numeros y guines (-)
