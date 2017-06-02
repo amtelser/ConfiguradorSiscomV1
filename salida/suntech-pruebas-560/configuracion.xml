@@ -19,7 +19,7 @@
         <clase></clase>
         <parametros>
             <!-- Nombre del servidor -->
-            <parametro nombre="nombreServidor" valor="Op:1 MAQ:2A BD:MCM SUNTECH ST230 CANALES: ST230-MS3-01 ST230-TC-01 ST230E-TC-01 ST230-MS3-02 ST230-TC-02 ST330i-TC-01 ST330i-MS-01 ST330e-TC-01 ST330e-MS-01 ST330e-TC-02 ST330e-MS-02" />
+            <parametro nombre="nombreServidor" valor="Servidor de pruebas de comunicaciones Suntech 560xx" />
             <!-- identificador unico del servidor.
                  Regla:
                  -  Solo letras, numeros y guines (-)
@@ -27,18 +27,18 @@
             -->
             <!--                                          0         1        2         3   -->
             <!--                                          12345678901234567890123456789012 -->
-            <parametro nombre="identificadorUnico" valor="CMIA-SKY-SUN-OP1" />
+            <parametro nombre="identificadorUnico" valor="SUNTECH-PRUEBAS-560" />
             <!-- Directorio de la bitacora del servidor -->
-            <parametro nombre="directorioBitacora" valor="/siscom/instancias/CMIA-SKY-SUN-OP1/log" />
+            <parametro nombre="directorioBitacora" valor="/siscom/instancias/SUNTECH-PRUEBAS-560/log" />
             <!-- Nivel de bitacora (DEBUG, INFO, WARN, ERROR) -->
             <parametro nombre="nivelBitacora" valor="WARN" />
             <parametro nombre="nivelBitacoraConsola" valor="WARN" />
             <!-- Puerto ZMQ del sincronizador -->
             <parametro nombre="puertoSincronizador" valor="56000" />
             <!-- Direccion IP a la red de equipos -->
-            <parametro nombre="direccionIpRedEquipos" valor="10.190.6.163" />
+            <parametro nombre="direccionIpRedEquipos" valor="192.168.2.59" />
             <!-- Direccion IP a la red local -->
-            <parametro nombre="direccionIpRedLocal" valor="10.190.6.163" />
+            <parametro nombre="direccionIpRedLocal" valor="10.190.5.51" />
             <!-- Servidor _NO_ autonomo (mantiene una base de datos local minima) -->
             <parametro nombre="servidorAutonomo" valor="no" />
             <!-- Generar un progress bar? (si|no) -->
@@ -118,7 +118,7 @@
                 URL para la conexion a la base de datos (;IF_EXISTS=TRUE)
                 NOTA: %s se reeplaza con el identificadorUnico (ver modulo Sevidor arriba)
             -->
-            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/CMIA-SKY-SUN-OP1/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
+            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/SUNTECH-PRUEBAS-560/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
             <!-- Numero maximo de conexiones del pool -->
             <parametro nombre="maxConexiones" valor="30" />
             <!-- Puerto recepcion INSERT, UPDATE, DELETE -->
@@ -139,11 +139,11 @@
         <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.Suntech.ManejadorComunicacionesSuntech</clase>
         <parametros>
             <!-- puerto de recepcion de eventos y alarmas -->
-            <parametro nombre="puertoRxEventosAlarmas" valor="5040" />
+            <parametro nombre="puertoRxEventosAlarmas" valor="5521" />
             <!-- numero de threads para recepcion de eventos y alarmas -->
             <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
             <!-- clase del manejador de comandos -->
-            <parametro nombre="puertoTxComandos" valor="9040" />
+            <parametro nombre="puertoTxComandos" valor="9000" />
             <!-- tiempo maximo de espera de la respuesta (en segundos) -->
             <parametro nombre="maxTiempoEspera" valor="30" />
             <!-- numero maximo de intentos -->
@@ -215,7 +215,7 @@
                 Por ejemplo:
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
-            <parametro nombre="canales" valor="'ST230-MS3-01','ST230-TC-01','ST230E-TC-01','ST230-MS3-02','ST230-TC-02','ST330i-TC-01','ST330i-MS-01','ST330e-TC-01','ST330e-MS-01','ST330e-TC-02','ST330e-MS-02'" />
+            <parametro nombre="canales" valor="'OTA-Suntech-TC01', 'ST340RA-TC-01', 'ST340RA-MS-01'" />
 
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
@@ -279,7 +279,7 @@
             <!-- Filtrar notificaciones MobilEye con ceros (si/no (default)) -->
             <parametro nombre="filtrarMobilEye" valor="no" />
             <!-- Geo-referenciar notificaciones (default: si) -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="no" />
@@ -425,100 +425,8 @@
         <clase>com.encontrack.sistemacomunicaciones.servidor.interfasenagios.InterfaseNagios</clase>
         <parametros>
             <!-- Puerto HTTP -->
-            <parametro nombre="puertoHttp" valor="8001" />
+            <parametro nombre="puertoHttp" valor="8561" />
         </parametros>
-    </modulo>
-
-    <!--
-        ****************************************
-        Modulo de interfase entre el manejador de
-        comunicaciones y el manejador de informacion que filtra duplicados
-        ****************************************
-    -->
-    <modulo>
-        <nombre>InterfaseComunicacionesFiltraDuplicados</nombre>
-        <descripcion>Modulo de comunicacion con los equipos y kafka</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.interfasecache.InterfaseComunicacionesFiltraDuplicados</clase>
-        <parametros>
-	    <parametro nombre="nombreModuloInterfaseComsInfo" valor="InterfaseComunicacionesInformacion" />
-	    <parametro nombre="nombreModuloManejadorEquipos" valor="ManejadorEquiposCache" />
-        </parametros>
-    </modulo>
-
-    <!--
-        ****************************************
-        Modulo de soporte con la informacion de acceso a Kafka
-        ****************************************
-    -->
-    <modulo>
-        <nombre>SoporteKafka</nombre>
-        <descripcion>Modulo de soporte con la informacion de acceso a Kafka</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.SoporteKafka</clase>
-        <parametros>
-            <!-- la ip y host de el/los servidor(es) de Kafka -->
-            <parametro nombre="servidoresKafka" valor="10.190.6.172:9092,10.190.6.173:9092" />
-            <!-- el tamanio del buffer de Kafka (al menos el tamanio mayor en bytes de los mensajes) -->
-            <parametro nombre="tamanioBytesBufferKafka" valor="3000" />
-            <!-- el nombre del topico al que se publican las comunicaciones -->
-            <parametro nombre="topico" valor="eventos-siscom" />
-            <!-- el nombre del el/los servidor(es) Zookeeper para realizar las configuraciones -->
-            <parametro nombre="servidoresZookeeper" valor="10.190.6.174:2181" />
-            <!-- el numero de particiones del topico (se aconseja que sea igual o mayor al numero max de conexiones a cache por IP/usuario) -->
-            <parametro nombre="numeroParticiones" valor="24" />
-            <!-- el numero de replicas del topico -->
-            <parametro nombre="numeroReplicas" valor="1" />
-            <!-- numero maximo de intentos de publicacion del mensaje -->
-            <parametro nombre="maxIntentosEnvio" valor="3" />
-            <!-- numero de milisegundos que Kafka va a esperar por la confirmacion del mensaje -->
-            <parametro nombre="msTimeoutRespuestaPeticion" valor="100000" />
-        </parametros>
-    </modulo>
-
-    <!--
-        ****************************************
-        Modulo publicador de comunicaciones
-        ****************************************
-    -->
-    <modulo>
-        <nombre>ModuloNotificadorExternoComunicaciones</nombre>
-        <descripcion>Modulo de Notificacion a Kafka</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.ManejadorNotificadorExternoComunicaciones</clase>
-        <parametros>
-	    <!-- indica si se han de filtrar las notificaciones MobilEye -->
-            <parametro nombre="filtrarMobilEye" valor="no" />
-            <!-- Habilitar (si, default)/Deshabilitar (no) insertar trayectos en TRAYECTOSUNTECH -->
-            <parametro nombre="habilitarTrayectoSuntech" valor="no" />
-            <!-- el numero de threads que procesan notificaciones simultaneamente -->
-            <parametro nombre="numThreadsNotificaciones" valor="24" />
-            <!-- indica si se han de georeferenciar las comunicaciones antes de publicarlas -->
-            <parametro nombre="geoReferenciar" valor="no" />
-            <!-- habilita la funcionalidad de respaldar mensajes que no se pudieron enviar a Kafka -->
-            <parametro nombre="habilitarRespaldo" valor="no" />
-            <!-- habilita la funcionalidad de procesar la respuesta de comandos -->
-            <parametro nombre="procesarRespuestaComando" valor="no" />
-
-            <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
-            <parametro nombre="filtrarDuplicados" valor="no" />
-        </parametros>
-    </modulo>
-
-    <!--
-        **********************************************************
-        Modulo publicador de trayectos
-        **********************************************************
-    -->
-    <modulo>
-        <nombre>PublicadorTrayectosKafka</nombre>
-        <descripcion>Modulo publicador de trayectos</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.ProcesadorTrayectosPublicador</clase>
-        <parametros>
-            <!-- Tiempo maximo de espera de una notificacion RET antes de sintetizar -->
-            <parametro nombre="maxTiempoEsperaRet" valor="10" />
-            <!-- Numero de trayectos en cierre activos -->
-            <parametro nombre="numTrayectosCierreActivos" valor="50" />
-            <!-- Geo-referenciar trayectos (default: si) -->
-            <parametro nombre="geoReferenciar" valor="si" />
-            </parametros>
     </modulo>
 
 </configuracion>

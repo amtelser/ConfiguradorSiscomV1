@@ -19,7 +19,7 @@
         <clase></clase>
         <parametros>
             <!-- Nombre del servidor -->
-            <parametro nombre="nombreServidor" valor="Op:1 MAQ:2A BD:MCM SUNTECH ST230 CANALES: ST230-MS3-01 ST230-TC-01 ST230E-TC-01 ST230-MS3-02 ST230-TC-02 ST330i-TC-01 ST330i-MS-01 ST330e-TC-01 ST330e-MS-01 ST330e-TC-02 ST330e-MS-02" />
+            <parametro nombre="nombreServidor" valor="Servidor de pruebas de comunicaciones Suntech 561xx" />
             <!-- identificador unico del servidor.
                  Regla:
                  -  Solo letras, numeros y guines (-)
@@ -27,18 +27,18 @@
             -->
             <!--                                          0         1        2         3   -->
             <!--                                          12345678901234567890123456789012 -->
-            <parametro nombre="identificadorUnico" valor="CMIA-SKY-SUN-OP1" />
+            <parametro nombre="identificadorUnico" valor="SUNTECH-PRUEBAS-561" />
             <!-- Directorio de la bitacora del servidor -->
-            <parametro nombre="directorioBitacora" valor="/siscom/instancias/CMIA-SKY-SUN-OP1/log" />
+            <parametro nombre="directorioBitacora" valor="/siscom/instancias/SUNTECH-PRUEBAS-561/log" />
             <!-- Nivel de bitacora (DEBUG, INFO, WARN, ERROR) -->
             <parametro nombre="nivelBitacora" valor="WARN" />
             <parametro nombre="nivelBitacoraConsola" valor="WARN" />
             <!-- Puerto ZMQ del sincronizador -->
-            <parametro nombre="puertoSincronizador" valor="56000" />
+            <parametro nombre="puertoSincronizador" valor="56100" />
             <!-- Direccion IP a la red de equipos -->
-            <parametro nombre="direccionIpRedEquipos" valor="10.190.6.163" />
+            <parametro nombre="direccionIpRedEquipos" valor="192.168.2.59" />
             <!-- Direccion IP a la red local -->
-            <parametro nombre="direccionIpRedLocal" valor="10.190.6.163" />
+            <parametro nombre="direccionIpRedLocal" valor="10.190.5.51" />
             <!-- Servidor _NO_ autonomo (mantiene una base de datos local minima) -->
             <parametro nombre="servidorAutonomo" valor="no" />
             <!-- Generar un progress bar? (si|no) -->
@@ -70,15 +70,15 @@
         <descripcion>Interfase entre el servidor el exterior</descripcion>
         <clase></clase>
         <parametros>
-            <parametro nombre="puertoVigilante" valor="56001" />
-            <parametro nombre="puertoTxExterno" valor="56002" />
-            <parametro nombre="puertoRxExterno" valor="56003" />
+            <parametro nombre="puertoVigilante" valor="56101" />
+            <parametro nombre="puertoTxExterno" valor="56102" />
+            <parametro nombre="puertoRxExterno" valor="56103" />
             <!-- tiempo en milisegundos para el muestreo del vigilante -->
             <parametro nombre="tiempoMuestreoVigilante" valor="3000" />
             <!-- longitud del buffer del vigilante -->
             <parametro nombre="longitudBufferVigilante" valor="512" />
             <!-- Puerto del publicador de diagnosticos -->
-            <parametro nombre="puertoPubDiagnosticos" valor="56010" />
+            <parametro nombre="puertoPubDiagnosticos" valor="56110" />
         </parametros>
     </modulo>
 
@@ -118,13 +118,13 @@
                 URL para la conexion a la base de datos (;IF_EXISTS=TRUE)
                 NOTA: %s se reeplaza con el identificadorUnico (ver modulo Sevidor arriba)
             -->
-            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/CMIA-SKY-SUN-OP1/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
+            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/SUNTECH-PRUEBAS-561/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
             <!-- Numero maximo de conexiones del pool -->
             <parametro nombre="maxConexiones" valor="30" />
             <!-- Puerto recepcion INSERT, UPDATE, DELETE -->
-            <parametro nombre="puertoUpdate" valor="56004" />
+            <parametro nombre="puertoUpdate" valor="56104" />
             <!-- Puerto recepcion SELECT, CALL -->
-            <parametro nombre="puertoSelect" valor="56005" />
+            <parametro nombre="puertoSelect" valor="56105" />
         </parametros>
     </modulo>
 
@@ -139,11 +139,11 @@
         <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.Suntech.ManejadorComunicacionesSuntech</clase>
         <parametros>
             <!-- puerto de recepcion de eventos y alarmas -->
-            <parametro nombre="puertoRxEventosAlarmas" valor="5040" />
+            <parametro nombre="puertoRxEventosAlarmas" valor="5626" />
             <!-- numero de threads para recepcion de eventos y alarmas -->
             <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
             <!-- clase del manejador de comandos -->
-            <parametro nombre="puertoTxComandos" valor="9040" />
+            <parametro nombre="puertoTxComandos" valor="9002" />
             <!-- tiempo maximo de espera de la respuesta (en segundos) -->
             <parametro nombre="maxTiempoEspera" valor="30" />
             <!-- numero maximo de intentos -->
@@ -158,7 +158,7 @@
             <!-- umbral inferior para detener comunicaciones -->
             <parametro nombre="umbralInferiorComunicaciones" valor="50" />
             <!-- puerto publicador de sobreflujo -->
-            <parametro nombre="puertoPubSobreFlujo" valor="56033" />
+            <parametro nombre="puertoPubSobreFlujo" valor="56133" />
         </parametros>
     </modulo>
 
@@ -176,15 +176,15 @@
             <!-- direccion de ip del servidor con el manejador de informacion -->
             <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
             <!-- puerto de envio de eventos y alarmas -->
-            <parametro nombre="puertoTxEventosAlarmas" valor="56006" />
+            <parametro nombre="puertoTxEventosAlarmas" valor="56106" />
             <!-- puerto de recepcion de comandos -->
-            <parametro nombre="puertoRxComandos" valor="56007" />
+            <parametro nombre="puertoRxComandos" valor="56107" />
             <!-- puerto de envio de resultados de comandos -->
-            <parametro nombre="puertoTxResultadosCmds" valor="56008" />
+            <parametro nombre="puertoTxResultadosCmds" valor="56108" />
             <!-- puerto publicador de paquetes -->
-            <parametro nombre="puertoPubPaquetes" valor="56035" />
+            <parametro nombre="puertoPubPaquetes" valor="56135" />
             <!-- puerto publicador de comunicaciones recibidas de equipos -->
-            <parametro nombre="puertoPubComunicaciones" valor="56026" />
+            <parametro nombre="puertoPubComunicaciones" valor="56126" />
         </parametros>
     </modulo>
 
@@ -198,7 +198,7 @@
         <descripcion>Modulo de interfase con la base de datos Cache</descripcion>
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.SoporteCache</clase>
         <parametros>
-            <parametro nombre="direccionIpCache" valor="cache.encontrack.com" />
+            <parametro nombre="direccionIpCache" valor="10.190.6.49" />
             <parametro nombre="puertoCache" valor="1972" />
             <parametro nombre="nombreBaseDeDatos" valor="FERGUISAPROD" />
             <parametro nombre="usuarioBd" valor="rafael" />
@@ -215,15 +215,15 @@
                 Por ejemplo:
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
-            <parametro nombre="canales" valor="'ST230-MS3-01','ST230-TC-01','ST230E-TC-01','ST230-MS3-02','ST230-TC-02','ST330i-TC-01','ST330i-MS-01','ST330e-TC-01','ST330e-MS-01','ST330e-TC-02','ST330e-MS-02'" />
+            <parametro nombre="canales" valor="'ST215-MS3-02','ST215-MS3-03','ST215-TC-02','ST215-TC-03'" />
 
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
-            <parametro nombre="puertoGeodecodificador" valor="56041" />
+            <parametro nombre="puertoGeodecodificador" valor="56141" />
             <!-- formato del geo-decodificador, pueder ser json o tsv -->
             <parametro nombre="formatoGeoDecodificaor" valor="tsv" />
             <!-- comando del geo-referenciador -->
-            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 56041" />
+            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 56141" />
 
             <!-- Numero de conexiones a la base de datos Cache -->
             <parametro nombre="numConexionesCache" valor="3" />
@@ -247,7 +247,7 @@
             <!-- Direccion IP del MMI para actualizar equipos -->
             <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
             <!-- Puerto de comunicacion para actualizar la lista de equipos -->
-            <parametro nombre="puertoActualizacionEquipos" valor="56030" />
+            <parametro nombre="puertoActualizacionEquipos" valor="56130" />
             <!--
                 Tipo de equipo que se maneja. Valores validos son:
                 SUNTECH
@@ -258,7 +258,7 @@
             -->
             <parametro nombre="tipoDeEquipo" valor="SUNTECH" />
             <!-- puerto publicador de contadores de paquetes -->
-            <parametro nombre="puertoPubContadorPaquetes" valor="56034" />
+            <parametro nombre="puertoPubContadorPaquetes" valor="56134" />
         </parametros>
     </modulo>
 
@@ -279,7 +279,7 @@
             <!-- Filtrar notificaciones MobilEye con ceros (si/no (default)) -->
             <parametro nombre="filtrarMobilEye" valor="no" />
             <!-- Geo-referenciar notificaciones (default: si) -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="no" />
@@ -303,14 +303,14 @@
             <!-- direccion de ip del servidor MMI -->
             <parametro nombre="direccionIpMMI" valor="127.0.0.1" />
             <!-- puerto publicador de notificaciones del MMI -->
-            <parametro nombre="puertoVentanilla" valor="56029" />
+            <parametro nombre="puertoVentanilla" valor="56129" />
             <!-- Tiempo maximo de espera de la ejecucion de comandos en segundos -->
             <!-- 360 segundos = 6 minutos para compensar hasta 5 comunicaciones -->
             <parametro nombre="tiempoMaxEjecucionComandos" valor="360" />
             <!-- Puerto para recibir solicitudes de comandos a Cache -->
-            <parametro nombre="puertoSolicitudComandos" valor="56031" />
+            <parametro nombre="puertoSolicitudComandos" valor="56131" />
             <!-- Puerto para publicar cambios de estado de comandos de Cache -->
-            <parametro nombre="puertoPubEstadosComandos" valor="56032" />
+            <parametro nombre="puertoPubEstadosComandos" valor="56132" />
         </parametros>
     </modulo>
 
@@ -344,9 +344,9 @@
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorComandosOTA</clase>
         <parametros>
             <!-- Puerto de recepcion de solicitudes de comandos -->
-            <parametro nombre="puertoSolicitudes" valor="56037" />
+            <parametro nombre="puertoSolicitudes" valor="56137" />
             <!-- Puerto de publicacion de resultados de comandos -->
-            <parametro nombre="puertoPubResultados" valor="56038" />
+            <parametro nombre="puertoPubResultados" valor="56138" />
             <!-- Numero de threads a usar para ejecutar comandos -->
             <parametro nombre="numThreadsEjecucionComandos" valor="8" />
         </parametros>
@@ -410,7 +410,7 @@
         <descripcion>Modulo procesador de reservaciones</descripcion>
         <clase>com.encontrack.sistemacomunicaciones.manejadorinformacion.ProcesadorReservaciones</clase>
         <parametros>
-            <parametro nombre="puertoUdpEscucha" valor="56040" />
+            <parametro nombre="puertoUdpEscucha" valor="56140" />
         </parametros>
     </modulo>
 
@@ -425,100 +425,8 @@
         <clase>com.encontrack.sistemacomunicaciones.servidor.interfasenagios.InterfaseNagios</clase>
         <parametros>
             <!-- Puerto HTTP -->
-            <parametro nombre="puertoHttp" valor="8001" />
+            <parametro nombre="puertoHttp" valor="56180" />
         </parametros>
-    </modulo>
-
-    <!--
-        ****************************************
-        Modulo de interfase entre el manejador de
-        comunicaciones y el manejador de informacion que filtra duplicados
-        ****************************************
-    -->
-    <modulo>
-        <nombre>InterfaseComunicacionesFiltraDuplicados</nombre>
-        <descripcion>Modulo de comunicacion con los equipos y kafka</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.interfasecache.InterfaseComunicacionesFiltraDuplicados</clase>
-        <parametros>
-	    <parametro nombre="nombreModuloInterfaseComsInfo" valor="InterfaseComunicacionesInformacion" />
-	    <parametro nombre="nombreModuloManejadorEquipos" valor="ManejadorEquiposCache" />
-        </parametros>
-    </modulo>
-
-    <!--
-        ****************************************
-        Modulo de soporte con la informacion de acceso a Kafka
-        ****************************************
-    -->
-    <modulo>
-        <nombre>SoporteKafka</nombre>
-        <descripcion>Modulo de soporte con la informacion de acceso a Kafka</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.SoporteKafka</clase>
-        <parametros>
-            <!-- la ip y host de el/los servidor(es) de Kafka -->
-            <parametro nombre="servidoresKafka" valor="10.190.6.172:9092,10.190.6.173:9092" />
-            <!-- el tamanio del buffer de Kafka (al menos el tamanio mayor en bytes de los mensajes) -->
-            <parametro nombre="tamanioBytesBufferKafka" valor="3000" />
-            <!-- el nombre del topico al que se publican las comunicaciones -->
-            <parametro nombre="topico" valor="eventos-siscom" />
-            <!-- el nombre del el/los servidor(es) Zookeeper para realizar las configuraciones -->
-            <parametro nombre="servidoresZookeeper" valor="10.190.6.174:2181" />
-            <!-- el numero de particiones del topico (se aconseja que sea igual o mayor al numero max de conexiones a cache por IP/usuario) -->
-            <parametro nombre="numeroParticiones" valor="24" />
-            <!-- el numero de replicas del topico -->
-            <parametro nombre="numeroReplicas" valor="1" />
-            <!-- numero maximo de intentos de publicacion del mensaje -->
-            <parametro nombre="maxIntentosEnvio" valor="3" />
-            <!-- numero de milisegundos que Kafka va a esperar por la confirmacion del mensaje -->
-            <parametro nombre="msTimeoutRespuestaPeticion" valor="100000" />
-        </parametros>
-    </modulo>
-
-    <!--
-        ****************************************
-        Modulo publicador de comunicaciones
-        ****************************************
-    -->
-    <modulo>
-        <nombre>ModuloNotificadorExternoComunicaciones</nombre>
-        <descripcion>Modulo de Notificacion a Kafka</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.ManejadorNotificadorExternoComunicaciones</clase>
-        <parametros>
-	    <!-- indica si se han de filtrar las notificaciones MobilEye -->
-            <parametro nombre="filtrarMobilEye" valor="no" />
-            <!-- Habilitar (si, default)/Deshabilitar (no) insertar trayectos en TRAYECTOSUNTECH -->
-            <parametro nombre="habilitarTrayectoSuntech" valor="no" />
-            <!-- el numero de threads que procesan notificaciones simultaneamente -->
-            <parametro nombre="numThreadsNotificaciones" valor="24" />
-            <!-- indica si se han de georeferenciar las comunicaciones antes de publicarlas -->
-            <parametro nombre="geoReferenciar" valor="no" />
-            <!-- habilita la funcionalidad de respaldar mensajes que no se pudieron enviar a Kafka -->
-            <parametro nombre="habilitarRespaldo" valor="no" />
-            <!-- habilita la funcionalidad de procesar la respuesta de comandos -->
-            <parametro nombre="procesarRespuestaComando" valor="no" />
-
-            <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
-            <parametro nombre="filtrarDuplicados" valor="no" />
-        </parametros>
-    </modulo>
-
-    <!--
-        **********************************************************
-        Modulo publicador de trayectos
-        **********************************************************
-    -->
-    <modulo>
-        <nombre>PublicadorTrayectosKafka</nombre>
-        <descripcion>Modulo publicador de trayectos</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.ProcesadorTrayectosPublicador</clase>
-        <parametros>
-            <!-- Tiempo maximo de espera de una notificacion RET antes de sintetizar -->
-            <parametro nombre="maxTiempoEsperaRet" valor="10" />
-            <!-- Numero de trayectos en cierre activos -->
-            <parametro nombre="numTrayectosCierreActivos" valor="50" />
-            <!-- Geo-referenciar trayectos (default: si) -->
-            <parametro nombre="geoReferenciar" valor="si" />
-            </parametros>
     </modulo>
 
 </configuracion>

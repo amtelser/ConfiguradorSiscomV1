@@ -36,9 +36,9 @@
             <!-- Puerto ZMQ del sincronizador -->
             <parametro nombre="puertoSincronizador" valor="55000" />
             <!-- Direccion IP a la red de equipos -->
-            <parametro nombre="direccionIpRedEquipos" valor="10.190.6.165" />
+            <parametro nombre="direccionIpRedEquipos" valor="10.190.6.167" />
             <!-- Direccion IP a la red local -->
-            <parametro nombre="direccionIpRedLocal" valor="10.190.6.165" />
+            <parametro nombre="direccionIpRedLocal" valor="10.190.6.167" />
             <!-- Servidor _NO_ autonomo (mantiene una base de datos local minima) -->
             <parametro nombre="servidorAutonomo" valor="no" />
             <!-- Generar un progress bar? (si|no) -->

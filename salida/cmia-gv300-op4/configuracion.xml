@@ -326,7 +326,7 @@
             <!-- Numero de trayectos en cierre activos -->
             <parametro nombre="numTrayectosCierreActivos" valor="50" />
             <!-- Geo-referenciar trayectos (default: si) -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
         </parametros>
     </modulo>
 
@@ -514,7 +514,7 @@
             <!-- Numero de trayectos en cierre activos -->
             <parametro nombre="numTrayectosCierreActivos" valor="50" />
             <!-- Geo-referenciar trayectos (default: si) -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
             </parametros>
     </modulo>
 

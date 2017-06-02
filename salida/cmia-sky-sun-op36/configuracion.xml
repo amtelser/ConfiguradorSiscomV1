@@ -19,7 +19,7 @@
         <clase></clase>
         <parametros>
             <!-- Nombre del servidor -->
-            <parametro nombre="nombreServidor" valor="Op:36 MAQ:LNX.168 BD:MIA SUNTECH CANALES: ST215-TC-16 ST215-MS-16 ST240-TC-11 ST240-MS-11 ST340-TC-10 ST340-MS-10 ST340RA-TC-01 ST340RA-MS-01" />
+            <parametro nombre="nombreServidor" valor="Op:36 MAQ:LNX.98 BD:MIA SUNTECH CANALES: ST215-TC-16 ST215-MS-16 ST240-TC-11 ST240-MS-11 ST340-TC-10 ST340-MS-10" />
             <!-- identificador unico del servidor.
                  Regla:
                  -  Solo letras, numeros y guines (-)
@@ -34,11 +34,11 @@
             <parametro nombre="nivelBitacora" valor="WARN" />
             <parametro nombre="nivelBitacoraConsola" valor="WARN" />
             <!-- Puerto ZMQ del sincronizador -->
-            <parametro nombre="puertoSincronizador" valor="56000" />
+            <parametro nombre="puertoSincronizador" valor="56500" />
             <!-- Direccion IP a la red de equipos -->
-            <parametro nombre="direccionIpRedEquipos" valor="10.190.6.168" />
+            <parametro nombre="direccionIpRedEquipos" valor="10.190.6.167" />
             <!-- Direccion IP a la red local -->
-            <parametro nombre="direccionIpRedLocal" valor="10.190.6.168" />
+            <parametro nombre="direccionIpRedLocal" valor="10.190.6.167" />
             <!-- Servidor _NO_ autonomo (mantiene una base de datos local minima) -->
             <parametro nombre="servidorAutonomo" valor="no" />
             <!-- Generar un progress bar? (si|no) -->
@@ -70,15 +70,15 @@
         <descripcion>Interfase entre el servidor el exterior</descripcion>
         <clase></clase>
         <parametros>
-            <parametro nombre="puertoVigilante" valor="56001" />
-            <parametro nombre="puertoTxExterno" valor="56002" />
-            <parametro nombre="puertoRxExterno" valor="56003" />
+            <parametro nombre="puertoVigilante" valor="56501" />
+            <parametro nombre="puertoTxExterno" valor="56502" />
+            <parametro nombre="puertoRxExterno" valor="56503" />
             <!-- tiempo en milisegundos para el muestreo del vigilante -->
             <parametro nombre="tiempoMuestreoVigilante" valor="3000" />
             <!-- longitud del buffer del vigilante -->
             <parametro nombre="longitudBufferVigilante" valor="512" />
             <!-- Puerto del publicador de diagnosticos -->
-            <parametro nombre="puertoPubDiagnosticos" valor="56010" />
+            <parametro nombre="puertoPubDiagnosticos" valor="56510" />
         </parametros>
     </modulo>
 
@@ -122,9 +122,9 @@
             <!-- Numero maximo de conexiones del pool -->
             <parametro nombre="maxConexiones" valor="30" />
             <!-- Puerto recepcion INSERT, UPDATE, DELETE -->
-            <parametro nombre="puertoUpdate" valor="56004" />
+            <parametro nombre="puertoUpdate" valor="56504" />
             <!-- Puerto recepcion SELECT, CALL -->
-            <parametro nombre="puertoSelect" valor="56005" />
+            <parametro nombre="puertoSelect" valor="56505" />
         </parametros>
     </modulo>
 
@@ -158,7 +158,7 @@
             <!-- umbral inferior para detener comunicaciones -->
             <parametro nombre="umbralInferiorComunicaciones" valor="50" />
             <!-- puerto publicador de sobreflujo -->
-            <parametro nombre="puertoPubSobreFlujo" valor="56033" />
+            <parametro nombre="puertoPubSobreFlujo" valor="56533" />
         </parametros>
     </modulo>
 
@@ -176,15 +176,15 @@
             <!-- direccion de ip del servidor con el manejador de informacion -->
             <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
             <!-- puerto de envio de eventos y alarmas -->
-            <parametro nombre="puertoTxEventosAlarmas" valor="56006" />
+            <parametro nombre="puertoTxEventosAlarmas" valor="56506" />
             <!-- puerto de recepcion de comandos -->
-            <parametro nombre="puertoRxComandos" valor="56007" />
+            <parametro nombre="puertoRxComandos" valor="56507" />
             <!-- puerto de envio de resultados de comandos -->
-            <parametro nombre="puertoTxResultadosCmds" valor="56008" />
+            <parametro nombre="puertoTxResultadosCmds" valor="56508" />
             <!-- puerto publicador de paquetes -->
-            <parametro nombre="puertoPubPaquetes" valor="56035" />
+            <parametro nombre="puertoPubPaquetes" valor="56535" />
             <!-- puerto publicador de comunicaciones recibidas de equipos -->
-            <parametro nombre="puertoPubComunicaciones" valor="56026" />
+            <parametro nombre="puertoPubComunicaciones" valor="56526" />
         </parametros>
     </modulo>
 
@@ -215,15 +215,15 @@
                 Por ejemplo:
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
-            <parametro nombre="canales" valor="'ST215-TC-16','ST215-MS-16','ST240-TC-11','ST240-MS-11','ST340-TC-10','ST340-MS-10','ST340RA-TC-01','ST340RA-MS-01'" />
+            <parametro nombre="canales" valor="'ST215-TC-16','ST215-MS-16','ST240-TC-11','ST240-MS-11','ST340-TC-10','ST340-MS-10'" />
 
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
-            <parametro nombre="puertoGeodecodificador" valor="56041" />
+            <parametro nombre="puertoGeodecodificador" valor="56541" />
             <!-- formato del geo-decodificador, pueder ser json o tsv -->
             <parametro nombre="formatoGeoDecodificaor" valor="tsv" />
             <!-- comando del geo-referenciador -->
-            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 56041" />
+            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 56541" />
 
             <!-- Numero de conexiones a la base de datos Cache -->
             <parametro nombre="numConexionesCache" valor="3" />
@@ -247,7 +247,7 @@
             <!-- Direccion IP del MMI para actualizar equipos -->
             <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
             <!-- Puerto de comunicacion para actualizar la lista de equipos -->
-            <parametro nombre="puertoActualizacionEquipos" valor="56030" />
+            <parametro nombre="puertoActualizacionEquipos" valor="56530" />
             <!--
                 Tipo de equipo que se maneja. Valores validos son:
                 SUNTECH
@@ -258,7 +258,7 @@
             -->
             <parametro nombre="tipoDeEquipo" valor="SUNTECH" />
             <!-- puerto publicador de contadores de paquetes -->
-            <parametro nombre="puertoPubContadorPaquetes" valor="56034" />
+            <parametro nombre="puertoPubContadorPaquetes" valor="56534" />
         </parametros>
     </modulo>
 
@@ -279,7 +279,7 @@
             <!-- Filtrar notificaciones MobilEye con ceros (si/no (default)) -->
             <parametro nombre="filtrarMobilEye" valor="no" />
             <!-- Geo-referenciar notificaciones (default: si) -->
-            <parametro nombre="geoReferenciar" valor="si" />
+            <parametro nombre="geoReferenciar" valor="no" />
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="no" />
@@ -303,14 +303,14 @@
             <!-- direccion de ip del servidor MMI -->
             <parametro nombre="direccionIpMMI" valor="127.0.0.1" />
             <!-- puerto publicador de notificaciones del MMI -->
-            <parametro nombre="puertoVentanilla" valor="56029" />
+            <parametro nombre="puertoVentanilla" valor="56529" />
             <!-- Tiempo maximo de espera de la ejecucion de comandos en segundos -->
             <!-- 360 segundos = 6 minutos para compensar hasta 5 comunicaciones -->
             <parametro nombre="tiempoMaxEjecucionComandos" valor="360" />
             <!-- Puerto para recibir solicitudes de comandos a Cache -->
-            <parametro nombre="puertoSolicitudComandos" valor="56031" />
+            <parametro nombre="puertoSolicitudComandos" valor="56531" />
             <!-- Puerto para publicar cambios de estado de comandos de Cache -->
-            <parametro nombre="puertoPubEstadosComandos" valor="56032" />
+            <parametro nombre="puertoPubEstadosComandos" valor="56532" />
         </parametros>
     </modulo>
 
@@ -344,9 +344,9 @@
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorComandosOTA</clase>
         <parametros>
             <!-- Puerto de recepcion de solicitudes de comandos -->
-            <parametro nombre="puertoSolicitudes" valor="56037" />
+            <parametro nombre="puertoSolicitudes" valor="56537" />
             <!-- Puerto de publicacion de resultados de comandos -->
-            <parametro nombre="puertoPubResultados" valor="56038" />
+            <parametro nombre="puertoPubResultados" valor="56538" />
             <!-- Numero de threads a usar para ejecutar comandos -->
             <parametro nombre="numThreadsEjecucionComandos" valor="8" />
         </parametros>
@@ -410,7 +410,7 @@
         <descripcion>Modulo procesador de reservaciones</descripcion>
         <clase>com.encontrack.sistemacomunicaciones.manejadorinformacion.ProcesadorReservaciones</clase>
         <parametros>
-            <parametro nombre="puertoUdpEscucha" valor="56040" />
+            <parametro nombre="puertoUdpEscucha" valor="56540" />
         </parametros>
     </modulo>
 
@@ -491,7 +491,7 @@
             <!-- el numero de threads que procesan notificaciones simultaneamente -->
             <parametro nombre="numThreadsNotificaciones" valor="24" />
             <!-- indica si se han de georeferenciar las comunicaciones antes de publicarlas -->
-            <parametro nombre="geoReferenciar" valor="si" />
+            <parametro nombre="geoReferenciar" valor="no" />
             <!-- habilita la funcionalidad de respaldar mensajes que no se pudieron enviar a Kafka -->
             <parametro nombre="habilitarRespaldo" valor="no" />
             <!-- habilita la funcionalidad de procesar la respuesta de comandos -->
