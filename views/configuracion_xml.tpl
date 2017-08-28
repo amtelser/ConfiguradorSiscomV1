@@ -311,6 +311,25 @@
         </parametros>
     </modulo>
 
+% if data['usar_manejador_beacontrack'] == 'si':
+    <!--
+        **********************************************************
+        Modulo manejador de equipos Beacontrack
+        **********************************************************
+    -->
+    <modulo>
+        <nombre>ManejadorEquiposBeacontrack</nombre>
+        <descripcion>Modulo manejador de equipos</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ManejadorEquiposBeacontrack</clase>
+        <parametros>
+            <!-- Periodo de actualizacion de la lista de equipos manejados en segundos -->
+            <parametro nombre="periodoActualizacionListaEquipos" valor="600" />
+            <!-- Periodo de retraso inicial en segundos para el verificador de equipos beacontrack -->
+            <parametro nombre="delayInicialVerificadorEquipos" valor="5" />
+        </parametros>
+    </modulo>
+% end
+
     <!--
         **********************************************************
         Modulo manejador de equipos
