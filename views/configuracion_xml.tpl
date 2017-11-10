@@ -386,6 +386,8 @@
             <parametro nombre="filtrarMobilEye" valor="{{! data['filtrar_mobil_eye'] }}" />
             <!-- Geo-referenciar notificaciones (default: si) -->
             <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_notificaciones'] }}" />
+            <!-- puerto publicador de notificaciones al analizador -->
+            <parametro nombre="puertoPubNotificaciones" valor="{{! str(int(data['puerto_base']) + 36) }}" />
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="{{! data['filtrar_duplicados'] }}" />
