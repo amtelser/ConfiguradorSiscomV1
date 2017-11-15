@@ -294,6 +294,8 @@
             <parametro nombre="filtrarMobilEye" valor="no" />
             <!-- Geo-referenciar notificaciones (default: si) -->
             <parametro nombre="geoReferenciar" valor="no" />
+            <!-- puerto publicador de notificaciones al analizador -->
+            <parametro nombre="puertoPubNotificaciones" valor="55036" />
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="no" />
