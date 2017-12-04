@@ -511,7 +511,7 @@
             <!-- habilita la funcionalidad de respaldar mensajes que no se pudieron enviar a Kafka -->
             <parametro nombre="habilitarRespaldo" valor="no" />
             <!-- habilita la funcionalidad de procesar la respuesta de comandos -->
-            <parametro nombre="procesarRespuestaComando" valor="no" />
+            <parametro nombre="procesarRespuestaComando" valor="si" />
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="no" />
