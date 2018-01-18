@@ -95,7 +95,7 @@
         <parametros>
             <!-- Envio de email de errores del servidor-->
             <!-- Servidor de SMTP para enviar emails de errores -->
-            <parametro nombre="servidorSmtp" valor="mail2.encontrack.com" />
+            <parametro nombre="servidorSmtp" valor="smtp.office365.com" />
             <parametro nombre="direccionElectronica" valor="suntech@encontrack.com" />
             <parametro nombre="direccionElectronicaCc" valor="" />
             <parametro nombre="maxErroresPendientes" valor="20" />
@@ -399,7 +399,7 @@
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.DetectorRobos</clase>
         <parametros>
             <!-- Servidor de SMTP para enviar emails  -->
-            <parametro nombre="servidorSmtp" valor="mail2.encontrack.com" />
+            <parametro nombre="servidorSmtp" valor="smtp.office365.com" />
             <!-- Quien recibe los emails de robos -->
             <parametro nombre="direccionEmailReporteRobos" valor="alarmas.robos@encontrack.com" />
             <!-- Quien recibe los emails de falsos contactos -->
