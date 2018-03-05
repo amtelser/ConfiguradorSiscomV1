@@ -403,7 +403,7 @@
             <!-- Quien recibe los emails de robos -->
             <parametro nombre="direccionEmailReporteRobos" valor="alarmas.robos@encontrack.com" />
             <!-- Quien recibe los emails de falsos contactos -->
-            <parametro nombre="direccionEmailReporteFalsosContactos" valor="rafael.schiavon@encontrack.com" />
+            <parametro nombre="direccionEmailReporteFalsosContactos" valor="siscom.falsos-contactos@encontrack.com" />
             <!-- Esperamos un maximo de 2 horas (60 Sec/Min * 60 Min/Hr * 2) -->
             <parametro nombre="tiempoMaxEsperaNotifRobo" valor="7200" />
             <!-- Numero maximo de falsos contactos antes de enviar el email -->
