@@ -438,6 +438,8 @@
             <parametro nombre="numTrayectosCierreActivos" valor="50" />
             <!-- Geo-referenciar trayectos (default: si) -->
             <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_trayectos'] }}" />
+            <!-- Indica si se van a procesar las notificaciones de Encendido y Apagado (default: no) -->
+            <parametro nombre="procesarEncendidosApagados" valor="si" />
         </parametros>
     </modulo>
 
@@ -627,7 +629,9 @@
             <parametro nombre="numTrayectosCierreActivos" valor="50" />
             <!-- Geo-referenciar trayectos (default: si) -->
             <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_trayectos'] }}" />
-            </parametros>
+            <!-- Indica si se van a procesar las notificaciones de Encendido y Apagado (default: no) -->
+            <parametro nombre="procesarEncendidosApagados" valor="si" />
+        </parametros>
     </modulo>
 
 % end
