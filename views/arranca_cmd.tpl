@@ -9,11 +9,9 @@ title {{ data['id_instancia'] }}
          -XX:+UseConcMarkSweepGC -XX:+UseParNewGC ^
          -XX:+HeapDumpOnOutOfMemoryError ^
          -Xms192m -Xmx192m ^
-         -XX:PermSize=128M ^
          -XX:ReservedCodeCacheSize=256m ^
          -XX:MaxGCPauseMillis=500 ^
          -XX:-UseBiasedLocking ^
-         -XX:+UseStringCache ^
          -jar ServidorComunicaciones.jar c:/siscom/instancias/{{ data['id_instancia'] }}/configuracion.xml
     goto lazo
 

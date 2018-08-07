@@ -9,11 +9,9 @@ java -Djava.library.path=/usr/local/lib \
      -XX:+UseConcMarkSweepGC -XX:+UseParNewGC \
      -XX:+HeapDumpOnOutOfMemoryError \
      -Xms192m -Xmx192m \
-     -XX:PermSize=128M \
      -XX:ReservedCodeCacheSize=256m \
      -XX:MaxGCPauseMillis=500 \
      -XX:-UseBiasedLocking \
-     -XX:+UseStringCache \
      -jar ServidorComunicaciones.jar /siscom/instancias/CMIA-SKY-SUN-OP32/configuracion.xml
 
 # ================================
