@@ -391,6 +391,7 @@
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="{{! data['filtrar_duplicados'] }}" />
+            <parametro nombre="escribeBitacora" valor="no" />
         </parametros>
     </modulo>
 

@@ -19,7 +19,7 @@
         <clase></clase>
         <parametros>
             <!-- Nombre del servidor -->
-            <parametro nombre="nombreServidor" valor="Op:38 MAQ:LNX.168 BD:MIA SUNTECH CANALES: ST215-TC-17 ST215-MS-17 ST240-TC-12 ST240-MS-12 ST340-TC-11 ST340-MS-11 ST340RA-TC-02 ST340RA-MS-02" />
+            <parametro nombre="nombreServidor" valor="Op:64 MAQ:LNX.169 BD:MIA SUNTECH CANALES: ST340-TC-24 ST340-MS-24 ST340RA-TC-15 ST340RA-MS-15" />
             <!-- identificador unico del servidor.
                  Regla:
                  -  Solo letras, numeros y guines (-)
@@ -27,18 +27,18 @@
             -->
             <!--                                          0         1        2         3   -->
             <!--                                          12345678901234567890123456789012 -->
-            <parametro nombre="identificadorUnico" valor="CMIA-SKY-SUN-OP38" />
+            <parametro nombre="identificadorUnico" valor="CMIA-SKY-SUN-OP64" />
             <!-- Directorio de la bitacora del servidor -->
-            <parametro nombre="directorioBitacora" valor="/siscom/instancias/CMIA-SKY-SUN-OP38/log" />
+            <parametro nombre="directorioBitacora" valor="/siscom/instancias/CMIA-SKY-SUN-OP64/log" />
             <!-- Nivel de bitacora (DEBUG, INFO, WARN, ERROR) -->
             <parametro nombre="nivelBitacora" valor="WARN" />
             <parametro nombre="nivelBitacoraConsola" valor="WARN" />
             <!-- Puerto ZMQ del sincronizador -->
             <parametro nombre="puertoSincronizador" valor="56100" />
             <!-- Direccion IP a la red de equipos -->
-            <parametro nombre="direccionIpRedEquipos" valor="10.190.6.168" />
+            <parametro nombre="direccionIpRedEquipos" valor="10.190.6.169" />
             <!-- Direccion IP a la red local -->
-            <parametro nombre="direccionIpRedLocal" valor="10.190.6.168" />
+            <parametro nombre="direccionIpRedLocal" valor="10.190.6.169" />
             <!-- Servidor _NO_ autonomo (mantiene una base de datos local minima) -->
             <parametro nombre="servidorAutonomo" valor="no" />
             <!-- Generar un progress bar? (si|no) -->
@@ -118,7 +118,7 @@
                 URL para la conexion a la base de datos (;IF_EXISTS=TRUE)
                 NOTA: %s se reeplaza con el identificadorUnico (ver modulo Sevidor arriba)
             -->
-            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/CMIA-SKY-SUN-OP38/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
+            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/CMIA-SKY-SUN-OP64/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
             <!-- Numero maximo de conexiones del pool -->
             <parametro nombre="maxConexiones" valor="30" />
             <!-- Puerto recepcion INSERT, UPDATE, DELETE -->
@@ -139,11 +139,11 @@
         <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.Suntech.ManejadorComunicacionesSuntech</clase>
         <parametros>
             <!-- puerto de recepcion de eventos y alarmas -->
-            <parametro nombre="puertoRxEventosAlarmas" valor="5050" />
+            <parametro nombre="puertoRxEventosAlarmas" valor="5080" />
             <!-- numero de threads para recepcion de eventos y alarmas -->
             <parametro nombre="numThreadsRxEventosAlarmas" valor="1" />
             <!-- clase del manejador de comandos -->
-            <parametro nombre="puertoTxComandos" valor="9024" />
+            <parametro nombre="puertoTxComandos" valor="9052" />
             <!-- tiempo maximo de espera de la respuesta (en segundos) -->
             <parametro nombre="maxTiempoEspera" valor="30" />
             <!-- numero maximo de intentos -->
@@ -215,7 +215,7 @@
                 Por ejemplo:
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
-            <parametro nombre="canales" valor="'ST215-TC-17','ST215-MS-17','ST240-TC-12','ST240-MS-12','ST340-TC-11','ST340-MS-11','ST340RA-TC-02','ST340RA-MS-02'" />
+            <parametro nombre="canales" valor="'ST340-TC-24','ST340-MS-24','ST340RA-TC-15','ST340RA-MS-15'" />
 
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
@@ -447,7 +447,7 @@
         <clase>com.encontrack.sistemacomunicaciones.servidor.interfasenagios.InterfaseNagios</clase>
         <parametros>
             <!-- Puerto HTTP -->
-            <parametro nombre="puertoHttp" valor="8038" />
+            <parametro nombre="puertoHttp" valor="8064" />
         </parametros>
     </modulo>
 

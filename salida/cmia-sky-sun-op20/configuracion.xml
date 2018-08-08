@@ -302,6 +302,7 @@
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="no" />
+            <parametro nombre="escribeBitacora" valor="no" />
         </parametros>
     </modulo>
 
