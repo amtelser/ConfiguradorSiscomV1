@@ -19,7 +19,7 @@
         <clase></clase>
         <parametros>
             <!-- Nombre del servidor -->
-            <parametro nombre="nombreServidor" valor="GV300-OP2 MAQ:LNX.169 BD:MIA CANALES: GV300-TC-01 GV300-MS3-01 GV300-MS3-02 GV300-TC-02" />
+            <parametro nombre="nombreServidor" valor="GV300-OP2 MAQ:LNX.169 BD:MIA CANALES: GV300-TC-01 GV300-MS3-01 GV300-MS3-02 GV300-TC-02 GV75-TC-07 GV75-MS-07" />
             <!-- identificador unico del servidor.
                  Regla:
                  -  Solo letras, numeros y guines (-)
@@ -212,7 +212,7 @@
                 Por ejemplo:
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
-            <parametro nombre="canales" valor="'GV300-TC-01','GV300-MS3-01','GV300-MS3-02','GV300-TC-02'" />
+            <parametro nombre="canales" valor="'GV300-TC-01','GV300-MS3-01','GV300-MS3-02','GV300-TC-02','GV75-TC-07','GV75-MS-07'" />
 
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
