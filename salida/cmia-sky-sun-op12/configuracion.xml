@@ -19,7 +19,7 @@
         <clase></clase>
         <parametros>
             <!-- Nombre del servidor -->
-            <parametro nombre="nombreServidor" valor="Op:12 MAQ:2A BD:MIA SUNTECH ST2xx CANALES: ST215-MS3-04 ST215-TC-04 ST340-TC-27 ST340-MS-27 ST340RA-TC-18 ST340RA-MS-18" />
+            <parametro nombre="nombreServidor" valor="Op:12 MAQ:2A BD:MIA SUNTECH ST2xx CANALES: ST215-MS3-04 ST215-TC-04" />
             <!-- identificador unico del servidor.
                  Regla:
                  -  Solo letras, numeros y guines (-)
@@ -215,7 +215,7 @@
                 Por ejemplo:
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
-            <parametro nombre="canales" valor="'ST215-MS3-04','ST215-TC-04','ST340-TC-27','ST340-MS-27','ST340RA-TC-18','ST340RA-MS-18'" />
+            <parametro nombre="canales" valor="'ST215-MS3-04','ST215-TC-04'" />
 
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
