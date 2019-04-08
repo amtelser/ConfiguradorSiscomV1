@@ -214,13 +214,13 @@
             -->
             <parametro nombre="canales" valor="'GL50-TC-01T'" />
 
-            <!-- Servicio de geo-referenciador >
+            <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
-            <parametro nombre="puertoGeodecodificador" valor="55141" /-->
-            <!-- formato del geo-decodificador, pueder ser json o tsv >
-            <parametro nombre="formatoGeoDecodificaor" valor="tsv" /-->
-            <!-- comando del geo-referenciador >
-            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 55141" /-->
+            <parametro nombre="puertoGeodecodificador" valor="55141" />
+            <!-- formato del geo-decodificador, pueder ser json o tsv -->
+            <parametro nombre="formatoGeoDecodificaor" valor="tsv" />
+            <!-- comando del geo-referenciador -->
+            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 55141" />
 
             <!-- Numero de conexiones a la base de datos Cache -->
             <parametro nombre="numConexionesCache" valor="3" />
@@ -293,7 +293,7 @@
             <!-- Filtrar notificaciones MobilEye con ceros (si/no (default)) -->
             <parametro nombre="filtrarMobilEye" valor="no" />
             <!-- Geo-referenciar notificaciones (default: si) -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
             <!-- puerto publicador de notificaciones al analizador -->
             <parametro nombre="puertoPubNotificaciones" valor="55136" />
 
@@ -346,7 +346,7 @@
             <!-- Numero de trayectos en cierre activos -->
             <parametro nombre="numTrayectosCierreActivos" valor="50" />
             <!-- Geo-referenciar trayectos (default: si) -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
             <!-- Indica si se van a procesar las notificaciones de Encendido y Apagado (default: no) -->
             <parametro nombre="procesarEncendidosApagados" valor="si" />
         </parametros>
@@ -415,7 +415,7 @@
             <!-- Habilitar el inicio de seguimiento al detectar un robo -->
             <parametro nombre="iniciarSeguimientoRobo" valor="no" />
             <!-- Geo-referenciar posiciones (default: si) -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
         </parametros>
     </modulo>
 
@@ -475,13 +475,13 @@
         <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.SoporteKafka</clase>
         <parametros>
             <!-- la ip y host de el/los servidor(es) de Kafka -->
-            <parametro nombre="servidoresKafka" valor="10.10.4.33:9092" />
+            <parametro nombre="servidoresKafka" valor="10.190.6.172:9092,10.190.6.173:9092" />
             <!-- el tamanio del buffer de Kafka (al menos el tamanio mayor en bytes de los mensajes) -->
             <parametro nombre="tamanioBytesBufferKafka" valor="3000" />
             <!-- el nombre del topico al que se publican las comunicaciones -->
             <parametro nombre="topico" valor="eventos-siscom" />
             <!-- el nombre del el/los servidor(es) Zookeeper para realizar las configuraciones -->
-            <parametro nombre="servidoresZookeeper" valor="10.10.4.33:2181" />
+            <parametro nombre="servidoresZookeeper" valor="10.190.6.174:2181" />
             <!-- el numero de particiones del topico (se aconseja que sea igual o mayor al numero max de conexiones a cache por IP/usuario) -->
             <parametro nombre="numeroParticiones" valor="24" />
             <!-- el numero de replicas del topico -->
@@ -510,7 +510,7 @@
             <!-- el numero de threads que procesan notificaciones simultaneamente -->
             <parametro nombre="numThreadsNotificaciones" valor="24" />
             <!-- indica si se han de georeferenciar las comunicaciones antes de publicarlas -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
             <!-- habilita la funcionalidad de respaldar mensajes que no se pudieron enviar a Kafka -->
             <parametro nombre="habilitarRespaldo" valor="no" />
             <!-- habilita la funcionalidad de procesar la respuesta de comandos -->
@@ -536,7 +536,7 @@
             <!-- Numero de trayectos en cierre activos -->
             <parametro nombre="numTrayectosCierreActivos" valor="50" />
             <!-- Geo-referenciar trayectos (default: si) -->
-            <parametro nombre="geoReferenciar" valor="no" />
+            <parametro nombre="geoReferenciar" valor="si" />
             <!-- Indica si se van a procesar las notificaciones de Encendido y Apagado (default: no) -->
             <parametro nombre="procesarEncendidosApagados" valor="si" />
         </parametros>
