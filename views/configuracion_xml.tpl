@@ -274,12 +274,12 @@
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.SoporteCache</clase>
         <parametros>
 % if ('tipo_instancia' in data) and (data['tipo_instancia'] == 'prod'):
-            <parametro nombre="direccionIpCache" valor="cache.encontrack.com" />
+            <parametro nombre="direccionIpCache" valor="comunicaciones-cache.encontrack.com" />
 % else:
             <parametro nombre="direccionIpCache" valor="10.190.6.49" />
 % end
             <parametro nombre="puertoCache" valor="1972" />
-            <parametro nombre="nombreBaseDeDatos" valor="FERGUISAPROD" />
+            <parametro nombre="nombreBaseDeDatos" valor="COMUNICACIONES" />
             <parametro nombre="usuarioBd" valor="rafael" />
             <parametro nombre="pwdBd" valor="rafaS1110"/>
             <parametro nombre="tablaBitacoraComs" valor="{{! data['tabla_bitacora'] }}" />
