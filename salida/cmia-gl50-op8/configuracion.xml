@@ -19,7 +19,7 @@
         <clase></clase>
         <parametros>
             <!-- Nombre del servidor -->
-            <parametro nombre="nombreServidor" valor="GV75-OP12 MAQ:LNX.223 BD:MIA CANALES: GV75-TC-10" />
+            <parametro nombre="nombreServidor" valor="GL50-OP8 MAQ:LNX.223 BD:MIA CANALES: GL50-TC-03" />
             <!-- identificador unico del servidor.
                  Regla:
                  -  Solo letras, numeros y guines (-)
@@ -27,14 +27,14 @@
             -->
             <!--                                          0         1        2         3   -->
             <!--                                          12345678901234567890123456789012 -->
-            <parametro nombre="identificadorUnico" valor="CMIA-GV75-OP12" />
+            <parametro nombre="identificadorUnico" valor="CMIA-GL50-OP8" />
             <!-- Directorio de la bitacora del servidor -->
-            <parametro nombre="directorioBitacora" valor="/siscom/instancias/CMIA-GV75-OP12/log" />
+            <parametro nombre="directorioBitacora" valor="/siscom/instancias/CMIA-GL50-OP8/log" />
             <!-- Nivel de bitacora (DEBUG, INFO, WARN, ERROR) -->
             <parametro nombre="nivelBitacora" valor="WARN" />
             <parametro nombre="nivelBitacoraConsola" valor="WARN" />
             <!-- Puerto ZMQ del sincronizador -->
-            <parametro nombre="puertoSincronizador" valor="55000" />
+            <parametro nombre="puertoSincronizador" valor="56700" />
             <!-- Direccion IP a la red de equipos -->
             <parametro nombre="direccionIpRedEquipos" valor="10.190.6.223" />
             <!-- Direccion IP a la red local -->
@@ -70,15 +70,15 @@
         <descripcion>Interfase entre el servidor el exterior</descripcion>
         <clase></clase>
         <parametros>
-            <parametro nombre="puertoVigilante" valor="55001" />
-            <parametro nombre="puertoTxExterno" valor="55002" />
-            <parametro nombre="puertoRxExterno" valor="55003" />
+            <parametro nombre="puertoVigilante" valor="56701" />
+            <parametro nombre="puertoTxExterno" valor="56702" />
+            <parametro nombre="puertoRxExterno" valor="56703" />
             <!-- tiempo en milisegundos para el muestreo del vigilante -->
             <parametro nombre="tiempoMuestreoVigilante" valor="3000" />
             <!-- longitud del buffer del vigilante -->
             <parametro nombre="longitudBufferVigilante" valor="512" />
             <!-- Puerto del publicador de diagnosticos -->
-            <parametro nombre="puertoPubDiagnosticos" valor="55010" />
+            <parametro nombre="puertoPubDiagnosticos" valor="56710" />
         </parametros>
     </modulo>
 
@@ -118,13 +118,13 @@
                 URL para la conexion a la base de datos (;IF_EXISTS=TRUE)
                 NOTA: %s se reeplaza con el identificadorUnico (ver modulo Sevidor arriba)
             -->
-            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/CMIA-GV75-OP12/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
+            <parametro nombre="url" valor="jdbc:h2:/siscom/instancias/CMIA-GL50-OP8/db/%s;AUTO_SERVER=TRUE;MVCC=TRUE" />
             <!-- Numero maximo de conexiones del pool -->
             <parametro nombre="maxConexiones" valor="30" />
             <!-- Puerto recepcion INSERT, UPDATE, DELETE -->
-            <parametro nombre="puertoUpdate" valor="55004" />
+            <parametro nombre="puertoUpdate" valor="56704" />
             <!-- Puerto recepcion SELECT, CALL -->
-            <parametro nombre="puertoSelect" valor="55005" />
+            <parametro nombre="puertoSelect" valor="56705" />
         </parametros>
     </modulo>
 
@@ -139,7 +139,7 @@
         <clase>com.encontrack.sistemacomunicaciones.servidor.equipos.queclink.ManejadorComunicacionesQueclink</clase>
         <parametros>
             <!-- puerto de comunicaciones con equipos -->
-            <parametro nombre="puertoComunicaciones" valor="5096" />
+            <parametro nombre="puertoComunicaciones" valor="5106" />
             <!-- milisegundos de espera a recibir un mensaje de los equipos -->
             <parametro nombre="mSecEsperaMensaje" valor="200" />
             <!-- numero de threads para recepcion de eventos y alarmas -->
@@ -155,7 +155,7 @@
             <!-- umbral inferior para detener comunicaciones -->
             <parametro nombre="umbralInferiorComunicaciones" valor="50" />
             <!-- puerto publicador de paquetes -->
-            <parametro nombre="puertoPubPaquetes" valor="55035" />
+            <parametro nombre="puertoPubPaquetes" valor="56735" />
         </parametros>
     </modulo>
 
@@ -173,15 +173,15 @@
             <!-- direccion de ip del servidor con el manejador de informacion -->
             <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
             <!-- puerto de envio de eventos y alarmas -->
-            <parametro nombre="puertoTxEventosAlarmas" valor="55006" />
+            <parametro nombre="puertoTxEventosAlarmas" valor="56706" />
             <!-- puerto de recepcion de comandos -->
-            <parametro nombre="puertoRxComandos" valor="55007" />
+            <parametro nombre="puertoRxComandos" valor="56707" />
             <!-- puerto de envio de resultados de comandos -->
-            <parametro nombre="puertoTxResultadosCmds" valor="55008" />
+            <parametro nombre="puertoTxResultadosCmds" valor="56708" />
             <!-- puerto publicador de paquetes -->
-            <parametro nombre="puertoPubPaquetes" valor="55035" />
+            <parametro nombre="puertoPubPaquetes" valor="56735" />
             <!-- puerto publicador de comunicaciones recibidas de equipos -->
-            <parametro nombre="puertoPubComunicaciones" valor="55026" />
+            <parametro nombre="puertoPubComunicaciones" valor="56726" />
         </parametros>
     </modulo>
 
@@ -212,15 +212,15 @@
                 Por ejemplo:
                     'CANAL-01','CANAL-02','CANAL-03'
             -->
-            <parametro nombre="canales" valor="'GV75-TC-10'" />
+            <parametro nombre="canales" valor="GL50-TC-03'" />
 
             <!-- Servicio de geo-referenciador -->
             <parametro nombre="servidorGeodecodificador" valor="127.0.0.1" />
-            <parametro nombre="puertoGeodecodificador" valor="55041" />
+            <parametro nombre="puertoGeodecodificador" valor="56741" />
             <!-- formato del geo-decodificador, pueder ser json o tsv -->
             <parametro nombre="formatoGeoDecodificaor" valor="tsv" />
             <!-- comando del geo-referenciador -->
-            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 55041" />
+            <parametro nombre="comandoGeoDecodificaor" valor="/siscom/georef/georef.sh 56741" />
 
             <!-- Numero de conexiones a la base de datos Cache -->
             <parametro nombre="numConexionesCache" valor="3" />
@@ -229,22 +229,6 @@
         </parametros>
     </modulo>
 
-    <!--
-        **********************************************************
-        Modulo manejador de equipos Beacontrack
-        **********************************************************
-    -->
-    <modulo>
-        <nombre>ManejadorEquiposBeacontrack</nombre>
-        <descripcion>Modulo manejador de equipos</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ManejadorEquiposBeacontrack</clase>
-        <parametros>
-            <!-- Periodo de actualizacion de la lista de equipos manejados en segundos -->
-            <parametro nombre="periodoActualizacionListaEquipos" valor="600" />
-            <!-- Periodo de retraso inicial en segundos para el verificador de equipos beacontrack -->
-            <parametro nombre="delayInicialVerificadorEquipos" valor="5" />
-        </parametros>
-    </modulo>
 
     <!--
         **********************************************************
@@ -261,7 +245,7 @@
             <!-- Direccion IP del MMI para actualizar equipos -->
             <parametro nombre="direccionIpManejadorInformacion" valor="127.0.0.1" />
             <!-- Puerto de comunicacion para actualizar la lista de equipos -->
-            <parametro nombre="puertoActualizacionEquipos" valor="55030" />
+            <parametro nombre="puertoActualizacionEquipos" valor="56730" />
             <!--
                 Tipo de equipo que se maneja. Valores validos son:
                 SUNTECH
@@ -272,7 +256,7 @@
             -->
             <parametro nombre="tipoDeEquipo" valor="QUECLINK" />
             <!-- puerto publicador de contadores de paquetes -->
-            <parametro nombre="puertoPubContadorPaquetes" valor="55034" />
+            <parametro nombre="puertoPubContadorPaquetes" valor="56734" />
         </parametros>
     </modulo>
 
@@ -295,7 +279,7 @@
             <!-- Geo-referenciar notificaciones (default: si) -->
             <parametro nombre="geoReferenciar" valor="si" />
             <!-- puerto publicador de notificaciones al analizador -->
-            <parametro nombre="puertoPubNotificaciones" valor="55036" />
+            <parametro nombre="puertoPubNotificaciones" valor="56736" />
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="no" />
@@ -320,14 +304,14 @@
             <!-- direccion de ip del servidor MMI -->
             <parametro nombre="direccionIpMMI" valor="127.0.0.1" />
             <!-- puerto publicador de notificaciones del MMI -->
-            <parametro nombre="puertoVentanilla" valor="55029" />
+            <parametro nombre="puertoVentanilla" valor="56729" />
             <!-- Tiempo maximo de espera de la ejecucion de comandos en segundos -->
             <!-- 360 segundos = 6 minutos para compensar hasta 5 comunicaciones -->
             <parametro nombre="tiempoMaxEjecucionComandos" valor="360" />
             <!-- Puerto para recibir solicitudes de comandos a Cache -->
-            <parametro nombre="puertoSolicitudComandos" valor="55031" />
+            <parametro nombre="puertoSolicitudComandos" valor="56731" />
             <!-- Puerto para publicar cambios de estado de comandos de Cache -->
-            <parametro nombre="puertoPubEstadosComandos" valor="55032" />
+            <parametro nombre="puertoPubEstadosComandos" valor="56732" />
         </parametros>
     </modulo>
 
@@ -363,9 +347,9 @@
         <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorComandosOTA</clase>
         <parametros>
             <!-- Puerto de recepcion de solicitudes de comandos -->
-            <parametro nombre="puertoSolicitudes" valor="55037" />
+            <parametro nombre="puertoSolicitudes" valor="56737" />
             <!-- Puerto de publicacion de resultados de comandos -->
-            <parametro nombre="puertoPubResultados" valor="55038" />
+            <parametro nombre="puertoPubResultados" valor="56738" />
             <!-- Numero de threads a usar para ejecutar comandos -->
             <parametro nombre="numThreadsEjecucionComandos" valor="8" />
         </parametros>
@@ -429,7 +413,7 @@
         <descripcion>Modulo procesador de reservaciones</descripcion>
         <clase>com.encontrack.sistemacomunicaciones.manejadorinformacion.ProcesadorReservaciones</clase>
         <parametros>
-            <parametro nombre="puertoUdpEscucha" valor="55040" />
+            <parametro nombre="puertoUdpEscucha" valor="56740" />
         </parametros>
     </modulo>
 
@@ -444,7 +428,7 @@
         <clase>com.encontrack.sistemacomunicaciones.servidor.interfasenagios.InterfaseNagios</clase>
         <parametros>
             <!-- Puerto HTTP -->
-            <parametro nombre="puertoHttp" valor="8214" />
+            <parametro nombre="puertoHttp" valor="8218" />
         </parametros>
     </modulo>
 
