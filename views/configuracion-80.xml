@@ -2,7 +2,7 @@
 
 <!--
     Document   : configuracion.xml
-    Author     : RSchiavon
+    Author     : JCabrera
     Description: Definicion de la configuracion del servidor
 -->
 

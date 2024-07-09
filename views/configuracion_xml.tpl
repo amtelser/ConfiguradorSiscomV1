@@ -2,8 +2,9 @@
 
 <!--
     Document   : configuracion.xml
-    Author     : RSchiavon
-    Description: Definicion de la configuracion del servidor
+    Author     : JCabrera
+    Description: Definicion de la configuracion del servidor de comunicaciones
+    Version    : 2022-05-23
 -->
 
 <configuracion>
@@ -363,37 +364,14 @@
 % if data['tipo_equipos'] == 'MIX2000':
             <parametro nombre="tipoDeEquipo" valor="MIX2000" />
 % end
+% if data['tipo_equipos'] == 'TELTONIKA':
+            <parametro nombre="tipoDeEquipo" valor="TELTONIKA" />
+% end
             <!-- puerto publicador de contadores de paquetes -->
             <parametro nombre="puertoPubContadorPaquetes" valor="{{! str(int(data['puerto_base']) + 34) }}" />
         </parametros>
     </modulo>
 
-    <!--
-        **********************************************************
-        Modulo procesador de notificaciones de equipos
-        **********************************************************
-    -->
-    <modulo>
-        <nombre>ProcesadorNotificacionesCache</nombre>
-        <descripcion>Modulo procesador de eventos y alarmas de equipos</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorNotificacionesCache</clase>
-        <parametros>
-            <!-- Numero de threads para procesar notificaciones (default=10) -->
-            <parametro nombre="numThreadsNotificaciones" valor="10" />
-            <!-- Habilitar (si, default)/Deshabilitar (no) insertar trayectos en TRAYECTOSUNTECH -->
-            <parametro nombre="habilitarTrayectoSuntech" valor="no" />
-            <!-- Filtrar notificaciones MobilEye con ceros (si/no (default)) -->
-            <parametro nombre="filtrarMobilEye" valor="{{! data['filtrar_mobil_eye'] }}" />
-            <!-- Geo-referenciar notificaciones (default: si) -->
-            <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_notificaciones'] }}" />
-            <!-- puerto publicador de notificaciones al analizador -->
-            <parametro nombre="puertoPubNotificaciones" valor="{{! str(int(data['puerto_base']) + 36) }}" />
-
-            <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
-            <parametro nombre="filtrarDuplicados" valor="{{! data['filtrar_duplicados'] }}" />
-            <parametro nombre="escribeBitacora" valor="no" />
-        </parametros>
-    </modulo>
 
     <!--
         **********************************************************
@@ -423,45 +401,6 @@
         </parametros>
     </modulo>
 
-    <!--
-        **********************************************************
-        Modulo procesador de trayectos
-        **********************************************************
-    -->
-    <modulo>
-        <nombre>ProcesadorTrayectosCache</nombre>
-        <descripcion>Modulo procesador de trayectos</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorTrayectosCache</clase>
-        <parametros>
-            <!-- Tiempo maximo de espera de una notificacion RET antes de sintetizar -->
-            <parametro nombre="maxTiempoEsperaRet" valor="10" />
-            <!-- Numero de trayectos en cierre activos -->
-            <parametro nombre="numTrayectosCierreActivos" valor="50" />
-            <!-- Geo-referenciar trayectos (default: si) -->
-            <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_trayectos'] }}" />
-            <!-- Indica si se van a procesar las notificaciones de Encendido y Apagado (default: no) -->
-            <parametro nombre="procesarEncendidosApagados" valor="si" />
-        </parametros>
-    </modulo>
-
-    <!--
-        **********************************************************
-        Modulo procesador de comandos provenientes de sistemas OTA
-        **********************************************************
-    -->
-    <modulo>
-        <nombre>ProcesadorComandosOTA</nombre>
-        <descripcion>Modulo de comandos de sistemas OTA</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.interfasecache.ProcesadorComandosOTA</clase>
-        <parametros>
-            <!-- Puerto de recepcion de solicitudes de comandos -->
-            <parametro nombre="puertoSolicitudes" valor="{{! str(int(data['puerto_base']) + 37) }}" />
-            <!-- Puerto de publicacion de resultados de comandos -->
-            <parametro nombre="puertoPubResultados" valor="{{! str(int(data['puerto_base']) + 38) }}" />
-            <!-- Numero de threads a usar para ejecutar comandos -->
-            <parametro nombre="numThreadsEjecucionComandos" valor="8" />
-        </parametros>
-    </modulo>
 
     <!--
         ********************************
@@ -477,37 +416,6 @@
             <parametro nombre="duracionSeguimiento" valor="600" />
             <!-- Periodo de solicitudes de posicion en segundos (1 por minuto) -->
             <parametro nombre="periodoEntreSolicitudesPosicion" valor="60" />
-        </parametros>
-    </modulo>
-
-    <!--
-        ********************************************************************************
-        Modulo para la detccion de robos
-        ********************************************************************************
-    -->
-    <modulo>
-        <nombre>DetectorRobos</nombre>
-        <descripcion>Modulo para la deteccion de robos</descripcion>
-        <clase>com.encontrack.sistemacomunicaciones.interfasecache.DetectorRobos</clase>
-        <parametros>
-            <!-- Servidor de SMTP para enviar emails  -->
-            <parametro nombre="servidorSmtp" valor="smtp.office365.com" />
-            <!-- Quien recibe los emails de robos -->
-            <parametro nombre="direccionEmailReporteRobos" valor="alarmas.robos@encontrack.com" />
-            <!-- Quien recibe los emails de falsos contactos -->
-            <parametro nombre="direccionEmailReporteFalsosContactos" valor="siscom.falsos-contactos@encontrack.com" />
-            <!-- Esperamos un maximo de 2 horas (60 Sec/Min * 60 Min/Hr * 2) -->
-            <parametro nombre="tiempoMaxEsperaNotifRobo" valor="7200" />
-            <!-- Numero maximo de falsos contactos antes de enviar el email -->
-            <parametro nombre="numMaxFalsosContactos" valor="100" />
-            <!-- Tiempo de congelamiento al detectar un robo en segundos (30 minutos) -->
-            <parametro nombre="tiempoCongelamientoRobo" valor="1800" />
-            <!-- Tiempo de congelamiento al detectar un falso contacto en segundos (24 horas) -->
-            <parametro nombre="tiempoCongelamientoFalso" valor="86400" />
-            <!-- Habilitar el inicio de seguimiento al detectar un robo -->
-            <parametro nombre="iniciarSeguimientoRobo" valor="no" />
-            <!-- Geo-referenciar posiciones (default: si) -->
-            <parametro nombre="geoReferenciar" valor="{{! data['geo_referenciar_robos'] }}" />
         </parametros>
     </modulo>
 
@@ -568,13 +476,42 @@
         <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.SoporteKafka</clase>
         <parametros>
             <!-- la ip y host de el/los servidor(es) de Kafka -->
-            <parametro nombre="servidoresKafka" valor="10.190.6.172:9092,10.190.6.173:9092" />
+            <parametro nombre="servidoresKafka" valor="kafka-1.encontrack.com:9092,kafka-2.encontrack.com:9092,kafka-3.encontrack.com:9092" />
             <!-- el tamanio del buffer de Kafka (al menos el tamanio mayor en bytes de los mensajes) -->
             <parametro nombre="tamanioBytesBufferKafka" valor="3000" />
             <!-- el nombre del topico al que se publican las comunicaciones -->
             <parametro nombre="topico" valor="eventos-siscom" />
             <!-- el nombre del el/los servidor(es) Zookeeper para realizar las configuraciones -->
-            <parametro nombre="servidoresZookeeper" valor="10.190.6.174:2181" />
+            <parametro nombre="servidoresZookeeper" valor="zk1.encontrack.com:2181" />
+            <!-- el numero de particiones del topico (se aconseja que sea igual o mayor al numero max de conexiones a cache por IP/usuario) -->
+            <parametro nombre="numeroParticiones" valor="24" />
+            <!-- el numero de replicas del topico -->
+            <parametro nombre="numeroReplicas" valor="1" />
+            <!-- numero maximo de intentos de publicacion del mensaje -->
+            <parametro nombre="maxIntentosEnvio" valor="3" />
+            <!-- numero de milisegundos que Kafka va a esperar por la confirmacion del mensaje -->
+            <parametro nombre="msTimeoutRespuestaPeticion" valor="100000" />
+        </parametros>
+    </modulo>
+% if data['publicar_greenvulcano'] == 'si':    
+    <!--
+        ****************************************
+        Modulo de soporte con la informacion de acceso a Kafka VOYAGER/GREEN VULCANO
+        ****************************************
+    -->
+    <modulo>
+        <nombre>SoporteKafkaVoyager</nombre>
+        <descripcion>Modulo de soporte con la informacion de acceso a Kafka</descripcion>
+        <clase>com.encontrack.sistemacomunicaciones.notificadorexterno.SoporteKafkaMultitopico</clase>
+        <parametros>
+            <!-- la ip y host de el/los servidor(es) de Kafka -->
+            <parametro nombre="servidoresKafka" valor="kafka-1.encontrack.com:9092,kafka-2.encontrack.com:9092,kafka-3.encontrack.com:9092" />
+            <!-- el tamanio del buffer de Kafka (al menos el tamanio mayor en bytes de los mensajes) -->
+            <parametro nombre="tamanioBytesBufferKafka" valor="3000" />
+            <!-- el nombre del topico al que se publican las comunicaciones -->
+            <parametro nombre="topicos" valor="gvlocation:location-messages,gvtripsuntech:trip-report-messages-suntech,gvdrivingsuntech:driving-alert-messages-suntech,gvdrivingsuntechcrash:driving-alert-messages-suntech-crash,gvdrivingquecklink:driving-alert-messages-quecklink,gvdrivingquecklinkcrash:driving-alert-messages-quecklink-crash,gvalert:alert-messages,gvfinetrackingsuntech:finetracking-report-suntech-messages,gvobdreportsuntech:obd-report-suntech-messages,gvpidreportsuntech:pid-report-suntech-messages" />
+            <!-- el nombre del el/los servidor(es) Zookeeper para realizar las configuraciones -->
+            <parametro nombre="servidoresZookeeper" valor="zk1.encontrack.com:2181" />
             <!-- el numero de particiones del topico (se aconseja que sea igual o mayor al numero max de conexiones a cache por IP/usuario) -->
             <parametro nombre="numeroParticiones" valor="24" />
             <!-- el numero de replicas del topico -->
@@ -586,6 +523,7 @@
         </parametros>
     </modulo>
 
+% end
     <!--
         ****************************************
         Modulo publicador de comunicaciones
@@ -611,6 +549,8 @@
 
             <parametro nombre="nombreModuloInterfaseComunicaciones" valor="InterfaseComunicacionesFiltraDuplicados" />
             <parametro nombre="filtrarDuplicados" valor="{{! data['filtrar_duplicados'] }}" />
+            <parametro nombre="publicarGreenVulcano" valor="{{! data['publicar_greenvulcano'] }}" />
+
         </parametros>
     </modulo>
 

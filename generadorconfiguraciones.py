@@ -3,6 +3,7 @@
 
 from __future__ import print_function
 import csv
+import importlib as imp
 import bottle
 import os
 import stat
@@ -112,19 +113,19 @@ try:
         #   'wb' indica escribir el archivo con EOL de Unix (Solo funciona con Python 2.x)
         f_configuracion = '{0}configuracion.xml'.format(dir_instancia)
         with open(f_configuracion, 'wb') as f_out:
-            f_out.write(configuracion)
+            f_out.write(configuracion.encode())
 
         f_arranca_lin = '{0}arranca.sh'.format(dir_instancia)
         with open(f_arranca_lin, 'wb') as f_out:
-            f_out.write(arranca_lin)
+            f_out.write(arranca_lin.encode())
 
         f_supervisor_ini = '{0}{1}.ini'.format(dir_instancia, id_instancia)
         with open(f_supervisor_ini, 'wb') as f_out:
-            f_out.write(supervisor_ini)
+            f_out.write(supervisor_ini.encode())
 
         f_instala_lin = '{0}instala.sh'.format(dir_instancia)
         with open(f_instala_lin, 'wb') as f_out:
-            f_out.write(instala_lin)
+            f_out.write(instala_lin.encode())
         st = os.stat(f_instala_lin)
         os.chmod(f_instala_lin, st.st_mode | stat.S_IEXEC)
 
